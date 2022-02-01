@@ -1,5 +1,17 @@
 <!-- interpolación: el dato se obtiene del C -->
 <p>{{titulo}}</p>
+<label for="sin">Sin letra</label>
+<input type="radio" id="sin" name="prefijo" value="sin" checked><br>
+<label for="x">X</label>
+<input type="radio" id="x" name="prefijo" value="0"><br>
+<label for="y">Y</label>
+<input type="radio" id="y" name="prefijo" value="1"><br>
+<label for="z">Z</label>
+<input type="radio" id="z" name="prefijo" value="2"><br>
 <input type="number" [(ngModel)]="numero" placeholder="Meta su dni">
-<button (click)="calcularLetraDni()">Calcular Letra</button>
-{{letra}}
+<button (click)="calculaLetraDni()">Calcular Letra</button>
+<!-- sólo quiero que se muestre
+la letra si, está calculada -->
+<div *ngIf="letra!=''">
+Su letra es {{letra}}
+</div>
