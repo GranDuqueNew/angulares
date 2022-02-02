@@ -72,6 +72,22 @@ export class ImcComponent implements OnInit {
 
   }
 
+  obtenerMediaPeso (array_imcs:Array<Imc>):number
+ //=>
+  {
+    let media: number =0;
+    let total: number = 0;
+
+    //sumo los valores - sumatorio / 
+    //array_imcs.forEach(item_imc => total = total + item_imc.peso);
+    array_imcs.forEach(item_imc =>{total += item_imc.peso});
+    //divido entre el nº de elementos
+    media = total/array_imcs.length;
+
+    return media;
+
+  }
+
   calcularIMC()
   {
     console.log("calcular imc boton tocado");
