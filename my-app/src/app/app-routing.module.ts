@@ -6,8 +6,8 @@ import { ImcComponent } from './components/imc/imc.component';
 //AQUÍ SE CONFIGURAN LAS RUTAS
 const routes: Routes = [
   {path:"dni", component: DniComponent},
-  {path:"", component: DniComponent},
-  {path:"imc", component: ImcComponent}
+  //{path:"", component: DniComponent},
+  {path:"", component: ImcComponent}
 
 ];
 

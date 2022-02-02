@@ -1,1 +1,31 @@
-<p>imc works!</p>
+<!-- interpolación: el dato se obtiene del C -->
+<p>{{titulo}}</p>
+<label for="peso">Peso</label>
+<input type="number" name="peso" [(ngModel)]="oimc.peso" placeholder="Intro peso">
+<label for="altura">Altura</label>
+<input type="number" name="altura" [(ngModel)]="oimc.altura" placeholder="Intro altura">
+<button (click)="calcularIMC()">Calcular IMC</button>
+<!-- sólo quiero que se muestre
+la letra si, está calculada -->
+<div *ngIf="oimc.numerico!=0">
+Su imc es {{oimc.numerico}}
+</div>
+<!-- Añadir una tabla que mueste los resultados acumulados -->
+<div *ngIf="lista_imcs && lista_imcs.length>0">
+    <table>
+        <thead>
+            <th>PESO</th>
+            <th>ALTURA</th>
+            <th>IMC NUM</th>
+            <th>LECTURA</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let auximc of lista_imcs">
+                <td>{{auximc.peso}}</td>
+                <td>{{auximc.altura}}</td>
+                <td>{{auximc.numerico}}</td>
+                <td>{{auximc.lectura}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
