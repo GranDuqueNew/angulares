@@ -10,7 +10,6 @@ import { TipoImc } from './tipo-imc';
 })
 export class ImcComponent implements OnInit {
 
-  //TODO: 
   /**
    * Haced una APP que calcule el Índice de Masa Corporal de una persona
    * la fórmula es la siguiente:
@@ -42,6 +41,8 @@ export class ImcComponent implements OnInit {
   // imc:number;
   oimc:Imc;
   lista_imcs:Array<Imc>;
+  mediaaltura:number;
+  mediapeso:number;
 
   constructor() { 
     // this.altura = 0;
@@ -49,6 +50,8 @@ export class ImcComponent implements OnInit {
     // this.imc = 0;
     this.oimc=new Imc();
     this.lista_imcs = new Array<Imc>();
+    this.mediaaltura=0;
+    this.mediapeso=0;
   }
 
   ngOnInit(): void {
@@ -73,7 +76,6 @@ export class ImcComponent implements OnInit {
   }
 
   obtenerMediaPeso (array_imcs:Array<Imc>):number
- //=>
   {
     let media: number =0;
     let total: number = 0;
@@ -88,10 +90,61 @@ export class ImcComponent implements OnInit {
 
   }
 
+  filtrarObesos (array_imcs:Array<Imc>):Array<Imc>
+  {
+    let array_obesos:Array<Imc>= new Array<Imc>();
+
+     array_obesos = array_imcs.filter (item_imc => item_imc.categoria==TipoImc.OBESO);
+
+
+    return array_obesos;
+  }
+
+  transformarMas1kg (array_imcs:Array<Imc>)
+  {
+    array_imcs.map(item_imc  => {
+      item_imc.peso=item_imc.peso+1;
+      return item_imc;
+    })
+  }
+
+  obtenerMediaAltura (array_imcs:Array<Imc>):number
+  {
+    let media: number =0;
+    let total: number = 0;
+
+    //sumo los valores - sumatorio / 
+    //array_imcs.forEach(item_imc => total = total + item_imc.peso);
+    array_imcs.forEach(item_imc =>{total += item_imc.altura});
+    //divido entre el nº de elementos
+    media = total/array_imcs.length;
+
+    return media;
+
+  }
+
+  mostrarPorConsola (array:Array<Imc>)
+  {
+    array.forEach (/*function mostrar (itemimc)*/ (itemimc,i) => {
+      /*console.log("POS " + i);
+      console.log(itemimc.altura);
+      console.log(itemimc.peso);
+      console.log(itemimc.numerico);
+      console.log(itemimc.categoria);*/
+      console.log(`Posición ${i} ${itemimc.altura} ${itemimc.peso} ${itemimc.numerico} ${itemimc.categoria} ${itemimc.lectura}`);
+    });
+
+  }
+
+  
+
   calcularIMC()
   {
     console.log("calcular imc boton tocado");
     this.oimc.numerico = this.oimc.peso / (this.oimc.altura*this.oimc.altura);
+    //casting de String a numero
+    this.oimc.numerico =+ this.oimc.numerico.toFixed(2);
+    //this.oimc.numerico = parseFloat(this.oimc.numerico.toFixed(2));
     if (this.oimc.numerico<16)
     {
       //desnutrido
@@ -127,17 +180,23 @@ export class ImcComponent implements OnInit {
     this.lista_imcs.push(nuevo_imc);
     //this.lista_imcs.push(this.oimc);
 
-    this.lista_imcs.forEach (/*function mostrar (itemimc)*/ (itemimc,i) => {
-      /*console.log("POS " + i);
-      console.log(itemimc.altura);
-      console.log(itemimc.peso);
-      console.log(itemimc.numerico);
-      console.log(itemimc.categoria);*/
-      console.log(`Posición ${i} ${itemimc.altura} ${itemimc.peso} ${itemimc.numerico} ${itemimc.categoria} ${itemimc.lectura}`);
-    });
+    
+    this.mediaaltura = this.obtenerMediaAltura(this.lista_imcs);
+    this.mediaaltura =+ this.mediaaltura.toFixed(2);
+    this.mediapeso = this.obtenerMediaPeso(this.lista_imcs);
+    this.mediapeso =+ this.mediapeso.toFixed(2);
+    let array_obesos:Array<Imc> = this.filtrarObesos(this.lista_imcs);
+    console.log("Mostrando obesos");
+    this.mostrarPorConsola(array_obesos);
+    this.transformarMas1kg(this.lista_imcs);
+    console.log("Mostrando +1kg");
+    this.mostrarPorConsola(this.lista_imcs);
+
 
   }
 
+
+  //TODO:
   //forEach
   //map
   //filter
