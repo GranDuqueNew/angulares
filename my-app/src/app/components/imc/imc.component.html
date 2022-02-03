@@ -7,7 +7,11 @@
 <button (click)="calcularIMC()">Calcular IMC</button>
 <!-- sólo quiero que se muestre
 la letra si, está calculada -->
+
+
 <div *ngIf="oimc.numerico!=0">
+<img src={{oimc.foto}} alt="estado imc">
+<br>
 Su imc es {{oimc.numerico}}
 </div>
 <!-- Añadir una tabla que mueste los resultados acumulados -->
@@ -18,6 +22,7 @@ Su imc es {{oimc.numerico}}
             <th>ALTURA</th>
             <th>IMC NUM</th>
             <th>LECTURA</th>
+            <th>FOTO</th>
         </thead>
         <tbody>
             <tr *ngFor="let auximc of lista_imcs">
@@ -25,6 +30,7 @@ Su imc es {{oimc.numerico}}
                 <td>{{auximc.altura}}</td>
                 <td>{{auximc.numerico}}</td>
                 <td>{{auximc.lectura}}</td>
+                <td><img src={{auximc.foto}} alt="estado imc"></td>
             </tr>
         </tbody>
     </table>

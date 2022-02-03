@@ -43,6 +43,11 @@ export class ImcComponent implements OnInit {
   lista_imcs:Array<Imc>;
   mediaaltura:number;
   mediapeso:number;
+  static readonly FOTO_DESNUTRIDO:string="assets/desnutrido.jpg";
+  static readonly FOTO_DELGADO:string="assets/delgado.jpg";
+  static readonly FOTO_IDEAL:string="assets/ideal.jpg";
+  static readonly FOTO_SOBREPESO:string="assets/sobrepeso.jpg";
+  static readonly FOTO_OBESO:string="assets/obeso.jpg";
 
   constructor() { 
     // this.altura = 0;
@@ -68,6 +73,7 @@ export class ImcComponent implements OnInit {
       imc_aux.numerico = oimc.numerico;
       imc_aux.categoria = oimc.categoria;
       imc_aux.lectura = oimc.lectura;
+      imc_aux.foto = oimc.foto;
       
 
     return imc_aux;
@@ -150,26 +156,31 @@ export class ImcComponent implements OnInit {
       //desnutrido
       this.oimc.categoria=TipoImc.DESNUTRIDO;
       this.oimc.lectura = TipoImc[TipoImc.DESNUTRIDO];
+      this.oimc.foto = ImcComponent.FOTO_DESNUTRIDO;
     } else if (this.oimc.numerico>=16 && this.oimc.numerico<18)
      {
        //delgado
        this.oimc.categoria=TipoImc.DELGADO;
        this.oimc.lectura = TipoImc[TipoImc.DELGADO];
+       this.oimc.foto = ImcComponent.FOTO_DELGADO;
      }else if (this.oimc.numerico>=18 && this.oimc.numerico<25)
      {
        //ideal
        this.oimc.categoria=TipoImc.IDEAL;
        this.oimc.lectura = TipoImc[TipoImc.IDEAL];
+       this.oimc.foto = ImcComponent.FOTO_IDEAL;
      }else if (this.oimc.numerico>=25 && this.oimc.numerico<31)
      {
        //soberpeso
        this.oimc.categoria=TipoImc.SOBREPESO;
        this.oimc.lectura = TipoImc[TipoImc.SOBREPESO];
+       this.oimc.foto = ImcComponent.FOTO_SOBREPESO;
      }else if (this.oimc.numerico>=31)
      {
        //obeso
        this.oimc.categoria=TipoImc.OBESO;//orden
        this.oimc.lectura = TipoImc[TipoImc.OBESO];//accedo al Enumerado como String
+       this.oimc.foto = ImcComponent.FOTO_OBESO;
 
      }
     

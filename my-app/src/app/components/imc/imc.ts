@@ -7,6 +7,7 @@ export class Imc {
     numerico:number;
     categoria:TipoImc;
     lectura:string;
+    foto:string;
 
     //ME PERMITE CREAR OBJETOS
     //variables de tipo IMC
@@ -17,5 +18,6 @@ export class Imc {
         this.numerico=0;
         this.categoria=TipoImc.DESNUTRIDO;
         this.lectura="";
+        this.foto="";
     }
 }
