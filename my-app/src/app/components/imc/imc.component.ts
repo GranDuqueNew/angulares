@@ -60,6 +60,22 @@ export class ImcComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //localStorage.setItem('miGato', 'Juan');
+    //sessionStorage.setItem('miGato', 'Juan');
+    //TODO: contar el número de veces que ha visitado nuestra página del imc
+    let nveces:number=0;
+    let sveces:string|null=localStorage.getItem('num_veces');
+    if (sveces!=null)
+    {
+      //existe registro - no es la primera vez que se conecta
+      //casting de string a numero
+      nveces =+ sveces;
+    } 
+    nveces = nveces + 1;
+    
+    localStorage.setItem('num_veces', nveces+'');
+    console.log("se ha conectado " + nveces);
+
   }
 
   nuevoItemImc (oimc:Imc) : Imc
@@ -207,15 +223,35 @@ export class ImcComponent implements OnInit {
   }
 
 
-  //TODO:
-  //forEach
-  //map
-  //filter
-  //PARA PRACTICAR LOS OPERADORES FUNCIONALES DEL ARRAY
-  //USANDO ESTOS , HAGAMOS
-  //1) OBTENER LA MEDIA DE PESO DE TODOS LOS IMCS
-  //2) OBTENER LA MEDIA DE ALTURA DE TODOS LOS IMCS
-  //3) OBTENER UN ARRAY SÓLO CON LOS OBESOS
-  //4) TRANSFORMAR EL ARRAY ORIGINAL Y SUBIR 1KG A TODOS LOS IMCS
+  ordenarPorImc(){
+    console.log("Ordenando por IMC...");
+    this.lista_imcs.sort (
+      (a:Imc, b:Imc) => {
+        let valor_devuelto:number =0;
+        /*if (a.numerico>b.numerico)
+        {
+          valor_devuelto = -1;
+        } else if (b.numerico>a.numerico)
+        {
+          valor_devuelto=1;
+        } else {
+          valor_devuelto=0;
+        }*/
+        valor_devuelto=a.numerico-b.numerico ;// de menor a mayor ASC
+        //valor_devuelto=b.numerico-a.numerico ;// de mayor a menor DESC
+        //TODO: práctica: poner eventos a las distintas columnas
+        //y conseguir ordenar por distintos criterios
+        //si a es mayor que b
+          //1 o un nº positivo
+        //si a es menor que b
+          //-1 o nº negativo
+        //si son iguales
+          //0  
+        
+        return valor_devuelto;
+      }
+    );
 
+  }
+  
 }
