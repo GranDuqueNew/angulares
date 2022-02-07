@@ -3,16 +3,46 @@
     Notifications <span class="badge bg-secondary">4</span>
   </button> -->
 <p>{{titulo}}</p>
-<label for="sin">Sin letra</label>
+
+<div class="form-check">
+  <input class="form-check-input" type="radio" value="sin" name="prefijo" id="sin" checked>
+  <label class="form-check-label" for="sin">
+    Sin letra
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" value="0" name="prefijo" id="x">
+  <label class="form-check-label" for="x">
+    X
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" value="1" name="prefijo" id="y">
+  <label class="form-check-label" for="y">
+    Y
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" value="2" name="prefijo" id="z" >
+  <label class="form-check-label" for="z">
+    Z
+  </label>
+</div>
+<!-- <label for="sin">Sin letra</label>
 <input type="radio" id="sin" name="prefijo" value="sin" checked><br>
 <label for="x">X</label>
 <input type="radio" id="x" name="prefijo" value="0"><br>
 <label for="y">Y</label>
 <input type="radio" id="y" name="prefijo" value="1"><br>
 <label for="z">Z</label>
-<input type="radio" id="z" name="prefijo" value="2"><br>
-<input type="number" [(ngModel)]="numero" placeholder="Meta su dni">
-<button (click)="calculaLetraDni()">Calcular Letra</button>
+<input type="radio" id="z" name="prefijo" value="2"><br>-->
+<!-- <input type="number" [(ngModel)]="numero" placeholder="Meta su dni"> -->
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">DNI</span>
+  <input type="number" [(ngModel)]="numero" class="form-control" placeholder="Meta su dni" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+
+<button (click)="calculaLetraDni()" class="btn btn-primary">Calcular Letra</button>
 <!-- sólo quiero que se muestre
 la letra si, está calculada -->
 <div *ngIf="letra!=''">

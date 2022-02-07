@@ -1,5 +1,9 @@
 <!-- interpolación: el dato se obtiene del C -->
 <p>{{titulo}}</p>
+<p>Última conexión {{ultima_vez | date:'medium'}}</p>
+<!-- <p>Fecha actual {{fechaactual | date:'full'}}</p>
+<p>Fecha actual {{fechaactual | date:'medium'}}</p>
+<p>Fecha actual {{fechaactual | date:'long'}}</p> -->
 <label for="peso">Peso</label>
 <input type="number" name="peso" [(ngModel)]="oimc.peso" placeholder="Intro peso">
 <label for="altura">Altura</label>
