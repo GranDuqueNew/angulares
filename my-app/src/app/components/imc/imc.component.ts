@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Imc } from './imc';
 import { TipoImc } from './tipo-imc';
 
@@ -8,7 +8,10 @@ import { TipoImc } from './tipo-imc';
   templateUrl: './imc.component.html',
   styleUrls: ['./imc.component.css']
 })
-export class ImcComponent implements OnInit {
+//al poner que una clase implementa una interfaz, estamos
+//asegurando a Angular que esa clase tiene los metodos de esa
+//interfaz implementados
+export class ImcComponent implements OnInit, OnDestroy {
 
   /**
    * Haced una APP que calcule el Índice de Masa Corporal de una persona
@@ -51,7 +54,7 @@ export class ImcComponent implements OnInit {
   static readonly FOTO_OBESO: string = "assets/obeso.jpg";
 
 
-  
+
 
   constructor() {
     // this.altura = 0;
@@ -83,35 +86,34 @@ export class ImcComponent implements OnInit {
     let ultima_vez: string | null;
     let momento_actual: string = "";
 
-      ultima_vez = localStorage.getItem("ultima_vez");
-      momento_actual = new Date().toString();
-      
-      if (ultima_vez == null) //
-      {
-        ultima_vez = momento_actual;
-      }
+    ultima_vez = localStorage.getItem("ultima_vez");
+    momento_actual = new Date().toString();
 
-      //actualizo
-      localStorage.setItem("ultima_vez", momento_actual);
+    if (ultima_vez == null) //
+    {
+      ultima_vez = momento_actual;
+    }
+
+    //actualizo
+    localStorage.setItem("ultima_vez", momento_actual);
 
     return ultima_vez;
 
   }
-//TODO: HACED UN BOTÓN BOTÓN DE BORRAR
-//QUE ELIMINE LOS REGISTROS DE LA TABLA
-//Y VACÍE LA MEMORIA LOCAL
+  //TODO: HACED UN BOTÓN BOTÓN DE BORRAR
+  //QUE ELIMINE LOS REGISTROS DE LA TABLA
+  //Y VACÍE LA MEMORIA LOCAL
 
-  cargarListaImcs ():Array<Imc>
-  {
-    let array_guardado:Array<Imc> = new Array<Imc>();
-    let string_json_guarado:string|null;
+  cargarListaImcs(): Array<Imc> {
+    let array_guardado: Array<Imc> = new Array<Imc>();
+    let string_json_guarado: string | null;
 
-      string_json_guarado = localStorage.getItem('lista_imcs');
-      if (string_json_guarado!=null)//
-      {
-          //había datos JSON, luego deserializo
-          array_guardado = <Array<Imc>>JSON.parse(string_json_guarado);
-      }
+    string_json_guarado = localStorage.getItem('lista_imcs');
+    if (string_json_guarado != null)//
+    {
+      //había datos JSON, luego deserializo
+      array_guardado = <Array<Imc>>JSON.parse(string_json_guarado);
+    }
 
 
     return array_guardado;
@@ -120,11 +122,11 @@ export class ImcComponent implements OnInit {
   ngOnInit(): void {
     //localStorage.setItem('miGato', 'Juan');
     //sessionStorage.setItem('miGato', 'Juan');
-    
+
     this.actualizarNumVeces();
     this.ultima_vez = this.obtenerYActualizarUltimaVez();
     //LOAD / CARGAR LOS IMCS PARA MOSTRARLOS
-    this.lista_imcs = this.cargarListaImcs ();
+    this.lista_imcs = this.cargarListaImcs();
   }
 
   nuevoItemImc(oimc: Imc): Imc {
@@ -240,14 +242,14 @@ export class ImcComponent implements OnInit {
     //PUEDO USAR EL API DE JS
     let nuevo_imc: Imc = this.nuevoItemImc(this.oimc);
 
-    
-    
+
+
 
 
     this.lista_imcs.push(nuevo_imc);
-    //AQUÍ GUARDO
-    let lista_json_imcs : string = JSON.stringify(this.lista_imcs);
-    localStorage.setItem('lista_imcs', lista_json_imcs);
+    // //AQUÍ GUARDO
+    // let lista_json_imcs: string = JSON.stringify(this.lista_imcs);
+    // localStorage.setItem('lista_imcs', lista_json_imcs);
 
     this.mediaaltura = this.obtenerMediaAltura(this.lista_imcs);
     this.mediaaltura = + this.mediaaltura.toFixed(2);
@@ -260,6 +262,28 @@ export class ImcComponent implements OnInit {
     console.log("Mostrando +1kg");
     this.mostrarPorConsola(this.lista_imcs);
 
+
+  }
+
+  //ESTE MÉTODO ES INVOCADA POR ANGULAR CUANDO EL COMPONENTE
+  //DEJA DE SER VISIBLE (CUANDO NAVEGO A OTRO COMPONENTE)
+  //SI EL USUARIO CIERRA LA VENTANA O CAMBIA MANUALMENTE LA RUTA
+  //ESTE MÉTODO NO ES INVOCADO
+  ngOnDestroy(): void
+  {
+    //aquí voy a guardar la lista 
+     //AQUÍ GUARDO
+     let lista_json_imcs: string = JSON.stringify(this.lista_imcs);
+     localStorage.setItem('lista_imcs', lista_json_imcs);
+     
+  }
+
+
+  borrarTablaImc() {
+    //ELIMINO LOCALMENTE LA LISTA
+    localStorage.removeItem('lista_imcs');
+    //BORRAR LA TABLA DE LA PÁGINA
+    this.lista_imcs.length = 0;
 
   }
 
@@ -280,7 +304,7 @@ export class ImcComponent implements OnInit {
         }*/
         valor_devuelto = a.numerico - b.numerico;// de menor a mayor ASC
         //valor_devuelto=b.numerico-a.numerico ;// de mayor a menor DESC
-        
+
         //y conseguir ordenar por distintos criterios
         //si a es mayor que b
         //1 o un nº positivo
@@ -307,6 +331,6 @@ export class ImcComponent implements OnInit {
 
     // //deserializar --> paso de texto a objeto
     // let var_imc = JSON.parse(objeto_imc_json);
-    // let oimc_aux = <Imc>var_imc;//CASTING 
+    // let oimc_aux = <Imc>var_imc;//CASTING
     // console.log(`IMC DESERIALIZADO ${oimc_aux.altura} ${oimc_aux.peso} ${oimc_aux.numerico} ${oimc_aux.categoria} ${oimc_aux.lectura}`);
-    
+
