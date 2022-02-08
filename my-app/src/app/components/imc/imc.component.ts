@@ -51,10 +51,7 @@ export class ImcComponent implements OnInit {
   static readonly FOTO_OBESO: string = "assets/obeso.jpg";
 
 
-  //TODO: USANDO EL LOCALSTORAGE GUARDAR LA ÚLTIMA
-  //VEZ QUE SE CONECTA EL USUARIO, PARA QUE LE 
-  //APAREZCA EL DATO DE "ÚLTIMA CONEXIÓN" 
-  //de forma veraz
+  
 
   constructor() {
     // this.altura = 0;
@@ -100,14 +97,34 @@ export class ImcComponent implements OnInit {
     return ultima_vez;
 
   }
+//TODO: HACED UN BOTÓN BOTÓN DE BORRAR
+//QUE ELIMINE LOS REGISTROS DE LA TABLA
+//Y VACÍE LA MEMORIA LOCAL
+
+  cargarListaImcs ():Array<Imc>
+  {
+    let array_guardado:Array<Imc> = new Array<Imc>();
+    let string_json_guarado:string|null;
+
+      string_json_guarado = localStorage.getItem('lista_imcs');
+      if (string_json_guarado!=null)//
+      {
+          //había datos JSON, luego deserializo
+          array_guardado = <Array<Imc>>JSON.parse(string_json_guarado);
+      }
+
+
+    return array_guardado;
+  }
 
   ngOnInit(): void {
     //localStorage.setItem('miGato', 'Juan');
     //sessionStorage.setItem('miGato', 'Juan');
-    //TODO: contar el número de veces que ha visitado nuestra página del imc
+    
     this.actualizarNumVeces();
     this.ultima_vez = this.obtenerYActualizarUltimaVez();
-
+    //LOAD / CARGAR LOS IMCS PARA MOSTRARLOS
+    this.lista_imcs = this.cargarListaImcs ();
   }
 
   nuevoItemImc(oimc: Imc): Imc {
@@ -220,13 +237,17 @@ export class ImcComponent implements OnInit {
 
     }
 
-
-
     //PUEDO USAR EL API DE JS
     let nuevo_imc: Imc = this.nuevoItemImc(this.oimc);
-    this.lista_imcs.push(nuevo_imc);
-    //this.lista_imcs.push(this.oimc);
 
+    
+    
+
+
+    this.lista_imcs.push(nuevo_imc);
+    //AQUÍ GUARDO
+    let lista_json_imcs : string = JSON.stringify(this.lista_imcs);
+    localStorage.setItem('lista_imcs', lista_json_imcs);
 
     this.mediaaltura = this.obtenerMediaAltura(this.lista_imcs);
     this.mediaaltura = + this.mediaaltura.toFixed(2);
@@ -259,7 +280,7 @@ export class ImcComponent implements OnInit {
         }*/
         valor_devuelto = a.numerico - b.numerico;// de menor a mayor ASC
         //valor_devuelto=b.numerico-a.numerico ;// de mayor a menor DESC
-        //TODO: práctica: poner eventos a las distintas columnas
+        
         //y conseguir ordenar por distintos criterios
         //si a es mayor que b
         //1 o un nº positivo
@@ -275,3 +296,17 @@ export class ImcComponent implements OnInit {
   }
 
 }
+
+//PASAR UN OBJETO A TEXTO
+    //PARA SU ALMACENAMIENTO O TRANSMSIÓN
+    //SERIALIZAR
+
+    // //formato JSON JAVASCRIPT OBJECT NOTATION
+    // let objeto_imc_json = JSON.stringify(nuevo_imc);//serializo
+    // console.log(`IMC EN TEXTO JSON = ${objeto_imc_json}`);
+
+    // //deserializar --> paso de texto a objeto
+    // let var_imc = JSON.parse(objeto_imc_json);
+    // let oimc_aux = <Imc>var_imc;//CASTING 
+    // console.log(`IMC DESERIALIZADO ${oimc_aux.altura} ${oimc_aux.peso} ${oimc_aux.numerico} ${oimc_aux.categoria} ${oimc_aux.lectura}`);
+    
