@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Marcador } from 'src/app/models/marcador';
 
 @Component({
   selector: 'app-juego-ppt',
@@ -16,9 +17,16 @@ export class JuegoPptComponent implements OnInit {
     [1, 0, -1],
     [-1, 1, 0]
   ];
+ 
+  //resultado?:string;//? TS me permite no inicializar un dato - opcional
+  resultado:string;//? TS me permite no inicializar un dato - opcional
+  marcador_actual:Marcador;
 
 
-  constructor() { }
+  constructor() { 
+    this.resultado='';
+    this.marcador_actual = new Marcador();
+  }
 
   ngOnInit(): void {
   }
@@ -55,6 +63,29 @@ export class JuegoPptComponent implements OnInit {
     return Math.floor(Math.random() * 3);
   }
 
+  mostrarResultado (resultado:number):void
+  {
+    //imprimir en la plantilla
+    switch ( resultado ) {
+      case -1:
+          // statement 1
+          this.resultado = "Ha ganado la máquina";
+          this.marcador_actual.puntuacion_maquina = this.marcador_actual.puntuacion_maquina+1;
+          break;
+      case 0:
+          // statement 2
+          this.resultado = "EMPATE";
+          this.marcador_actual.puntuacion_maquina = this.marcador_actual.puntuacion_maquina+1;
+          this.marcador_actual.puntuacion_jugador = this.marcador_actual.puntuacion_jugador+1;
+          break;
+      case 1:
+          // statement N
+          this.resultado = "Enhorabuena, has ganado :)";
+          this.marcador_actual.puntuacion_jugador = this.marcador_actual.puntuacion_jugador+1;
+          break;
+   }
+  }
+
   playNow() {
 
     let computer = this.getComputerPlay();
@@ -73,6 +104,7 @@ export class JuegoPptComponent implements OnInit {
 
       //TODO: mostrar el resultado
       console.log(result);
+      this.mostrarResultado (result);
 
       localStorage.removeItem("selected");
     }
