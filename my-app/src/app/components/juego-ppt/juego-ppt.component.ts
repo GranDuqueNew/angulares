@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Marcador } from 'src/app/models/marcador';
+import { MarcadorComponent } from '../marcador/marcador.component';
 
 @Component({
   selector: 'app-juego-ppt',
@@ -19,16 +20,29 @@ export class JuegoPptComponent implements OnInit {
   ];
  
   //resultado?:string;//? TS me permite no inicializar un dato - opcional
-  resultado:string;//? TS me permite no inicializar un dato - opcional
-  marcador_actual:Marcador;
+  //resultado:string;//? TS me permite no inicializar un dato - opcional
+  //marcador_actual:Marcador;
+
+  //@ViewChild(MarcadorComponent) marcador_componente?:MarcadorComponent;
 
 
   constructor() { 
-    this.resultado='';
-    this.marcador_actual = new Marcador();
+    //this.resultado='';
+    //this.marcador_actual = new Marcador();
+    console.log("constructor JuegoPptComponent");
   }
 
   ngOnInit(): void {
+    console.log("ngOnInit JuegoPptComponent");
+  }
+
+  //este método se invoca automáticamente
+  //cuando se ha renderizado toda la plantilla
+  //incluidos los hijos
+  ngAfterViewInit ()
+  {
+    console.log("ngAfterViewInit JuegoPptComponent");
+    //ya puedes utilizar el hijo this.marcador_componente
   }
 
   //el usuario hace su selección
@@ -65,8 +79,11 @@ export class JuegoPptComponent implements OnInit {
 
   mostrarResultado (resultado:number):void
   {
+    //esto es el componente hijo
+    //this.marcador_componente?.actualizarMarcador(resultado);
+
     //imprimir en la plantilla
-    switch ( resultado ) {
+    /*switch ( resultado ) {
       case -1:
           // statement 1
           this.resultado = "Ha ganado la máquina";
@@ -83,7 +100,7 @@ export class JuegoPptComponent implements OnInit {
           this.resultado = "Enhorabuena, has ganado :)";
           this.marcador_actual.puntuacion_jugador = this.marcador_actual.puntuacion_jugador+1;
           break;
-   }
+   }*/
   }
 
   playNow() {
