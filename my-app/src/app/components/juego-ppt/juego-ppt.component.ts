@@ -24,6 +24,8 @@ export class JuegoPptComponent implements OnInit {
   //marcador_actual:Marcador;
 
   //@ViewChild(MarcadorComponent) marcador_componente?:MarcadorComponent;
+  //@ViewChild(MarcadorComponent) marcador_componente2?:MarcadorComponent;
+  @ViewChild(MarcadorComponent) marcador_componente1?:MarcadorComponent;
 
 
   constructor() { 
@@ -79,6 +81,9 @@ export class JuegoPptComponent implements OnInit {
 
   mostrarResultado (resultado:number):void
   {
+
+    this.marcador_componente1?.actualizarMarcador(resultado);
+    //this.marcador_componente2?.actualizarMarcador(resultado);
     //esto es el componente hijo
     //this.marcador_componente?.actualizarMarcador(resultado);
 
