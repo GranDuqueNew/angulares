@@ -23,6 +23,18 @@ export class MarcadorComponent implements OnInit {
     this.marcador_actual = new Marcador();
     this.resultado='';
     console.log("constructor MarcadorComponent");
+
+    /*ADOLFO STYLE :)*/
+    /*
+    let pj_aux:string|null= localStorage.getItem('puntuacion_jugador');
+    this.marcador_actual.puntuacion_jugador =(pj_aux) ? +pj_aux : 0;//el más para castear
+
+    let pm_aux:string|null= localStorage.getItem('puntuacion_maquina');
+    this.marcador_actual.puntuacion_maquina =(pm_aux) ? +pm_aux : 0;//el más para castear*/
+    
+    
+  
+
   }
 
   ngOnInit(): void {
