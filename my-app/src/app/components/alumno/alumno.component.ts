@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Alumno } from 'src/app/models/alumno';
 import { AlumnoService } from 'src/app/services/alumno.service';
 //import { AlumnoService } from 'src/app/services/alumno.service';
 
@@ -16,7 +17,7 @@ export class AlumnoComponent implements OnInit {
 //servicio_alumnos:AlumnoService;
 
 
-
+lista_alumnos:Array<Alumno>;
   constructor(public servicio_alumnos:AlumnoService) {
     //this.servicio_alumnos = new AlumnoService();
    }
@@ -35,9 +36,17 @@ export class AlumnoComponent implements OnInit {
         next: (listado_alumnos_rx) => {
           //quiero mostrar los ids de los alumnos rx
           listado_alumnos_rx.forEach( alumno => {console.log(alumno.id);})
+          this.lista_alumnos = listado_alumnos_rx;
         }
       }
     );
+    
+  }
+
+  borrarAlumno (id:number)
+  {
+    console.log("ha tocado borrar " + id);
+    //TODO: llamar al servicio de alumnos para borrar
     
   }
 

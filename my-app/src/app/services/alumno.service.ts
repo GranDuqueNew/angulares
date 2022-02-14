@@ -16,16 +16,20 @@ export class AlumnoService {
 
   constructor(private http:HttpClient) { }
 
-
+//leer alumnos (del servidor)
   leerAlumnos () :Observable<Array<Alumno>>
   { //GET http://localhost:3000
     return this.http.get<Array<Alumno>>("http://localhost:3000/alumno");
 
   }
-
-  //leer alumnos (del servidor)
+//borrar 1 alumno
+  borrarAlumno (id:number)
+  {
+    this.http.delete("http://localhost:3000/alumno/"+id);
+  }
+  
   //leer 1 alumno
-  //borrar 1 alumno
+  
   //crear 1 alumno
   //modificar 1 alumno
 }
