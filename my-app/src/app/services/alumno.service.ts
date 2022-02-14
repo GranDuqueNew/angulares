@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Alumno } from '../models/alumno';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +17,9 @@ export class AlumnoService {
   constructor(private http:HttpClient) { }
 
 
-  leerAlumnos ()
+  leerAlumnos () :Observable<Array<Alumno>>
   { //GET http://localhost:3000
-    this.http.get("http://localhost:3000")
+    return this.http.get<Array<Alumno>>("http://localhost:3000/alumno");
 
   }
 

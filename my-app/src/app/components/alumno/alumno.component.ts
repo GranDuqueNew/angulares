@@ -21,8 +21,23 @@ export class AlumnoComponent implements OnInit {
     //this.servicio_alumnos = new AlumnoService();
    }
 
+//aquí usamos OBservables
+//es el último mecanismo para gestionar la asincronía de JS
+//previo a él están las promesas (api Fetch)
+//previo a él AJAX XmlHttpRequest
+//TODO: MOSTRAR LOS DATOS EN LA PLANTILLA
+
   ngOnInit(): void {
-    this.servicio_alumnos.leerAlumnos();
+    this.servicio_alumnos.leerAlumnos().subscribe(
+      {
+        complete: () => {console.log("comunicaión completada");},
+        error: (error_rx) => {console.error(error_rx);},
+        next: (listado_alumnos_rx) => {
+          //quiero mostrar los ids de los alumnos rx
+          listado_alumnos_rx.forEach( alumno => {console.log(alumno.id);})
+        }
+      }
+    );
     
   }
 
