@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Marcador } from 'src/app/models/marcador';
 import { MarcadorComponent } from '../marcador/marcador.component';
 
@@ -7,7 +7,7 @@ import { MarcadorComponent } from '../marcador/marcador.component';
   templateUrl: './juego-ppt.component.html',
   styleUrls: ['./juego-ppt.component.css']
 })
-export class JuegoPptComponent implements OnInit {
+export class JuegoPptComponent implements OnInit, AfterViewInit {
 
   seleccionado:boolean=false;
   ids_botones: Array<string> = ["piedra", "papel", "tijera"];
@@ -25,26 +25,50 @@ export class JuegoPptComponent implements OnInit {
 
   //@ViewChild(MarcadorComponent) marcador_componente?:MarcadorComponent;
   //@ViewChild(MarcadorComponent) marcador_componente2?:MarcadorComponent;
-  @ViewChild(MarcadorComponent) marcador_componente1?:MarcadorComponent;
+  
+  //para 1 marcador
+  @ViewChild(MarcadorComponent) marcador_componente1:MarcadorComponent;
+  //@ViewChild(MarcadorComponent) marcador_componente1;
+  
+  //para varios componentes hijos del mismo tipo
+  // @ViewChildren(MarcadorComponent) marcadores?:QueryList<MarcadorComponent>;
+ //para acceder a varios compoenente por su #nombre
+ //@ViewChild('marcador1') marcador1?:MarcadorComponent;
+ //@ViewChild('marcador2') marcador2?:MarcadorComponent;
+
 
 
   constructor() { 
     //this.resultado='';
-    //this.marcador_actual = new Marcador();
+    //this.marcador_componente1 = new MarcadorComponent()
     console.log("constructor JuegoPptComponent");
   }
 
   ngOnInit(): void {
     console.log("ngOnInit JuegoPptComponent");
+    
   }
 
   //este método se invoca automáticamente
   //cuando se ha renderizado toda la plantilla
   //incluidos los hijos
-  ngAfterViewInit ()
+  ngAfterViewInit ():void
   {
     console.log("ngAfterViewInit JuegoPptComponent");
     //ya puedes utilizar el hijo this.marcador_componente
+    // if (this.marcadores)
+    // {
+    //   console.log("marcadores iniciados");
+    //   this.marcadores.forEach((marcatore, i) => console.log(`marcador ${i} = ${marcatore.marcador_actual.puntuacion_jugador}`));
+    // }
+
+    // if ((this.marcador1)&&(this.marcador2))
+    // {
+    //    console.log("marcadores hijos iniciados ");
+    //    console.log("marcadores 1 " + this.marcador1.marcador_actual.puntuacion_jugador);
+    //    console.log("marcadores 2 " + this.marcador2.marcador_actual.puntuacion_jugador);
+    //    //this.marcadores.forEach((marcatore, i) => console.log(`marcador ${i} = ${marcatore.marcador_actual.puntuacion_jugador}`));
+    // }
   }
 
   //el usuario hace su selección
@@ -82,7 +106,8 @@ export class JuegoPptComponent implements OnInit {
   mostrarResultado (resultado:number):void
   {
 
-    this.marcador_componente1?.actualizarMarcador(resultado);
+    this.marcador_componente1.actualizarMarcador(resultado);
+    
     //this.marcador_componente2?.actualizarMarcador(resultado);
     //esto es el componente hijo
     //this.marcador_componente?.actualizarMarcador(resultado);
