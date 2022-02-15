@@ -17,18 +17,22 @@ export class AlumnoComponent implements OnInit {
 //servicio_alumnos:AlumnoService;
 
 
-lista_alumnos:Array<Alumno>;
+lista_alumnos:Array<Alumno>;//esta es la lista visible
+//las propiedas del C van sin let;
+automatico:boolean;
   constructor(public servicio_alumnos:AlumnoService) {
     //this.servicio_alumnos = new AlumnoService();
-   }
+    this.automatico=false;
+   } 
 
 //aquí usamos OBservables
 //es el último mecanismo para gestionar la asincronía de JS
 //previo a él están las promesas (api Fetch)
 //previo a él AJAX XmlHttpRequest
-//TODO: MOSTRAR LOS DATOS EN LA PLANTILLA
+
 
   ngOnInit(): void {
+    //let automatico:boolean = false;
     this.servicio_alumnos.leerAlumnos().subscribe(
       {
         complete: () => {console.log("comunicaión completada");},
@@ -47,7 +51,49 @@ lista_alumnos:Array<Alumno>;
   {
     console.log("ha tocado borrar " + id);
     //TODO: llamar al servicio de alumnos para borrar
+    if (confirm(`¿Deseas eliminar al alumno ${id}`))
+    {
+
+      this.servicio_alumnos.borrarAlumno(id).subscribe(
+        //observador - observador
+        {
+          //complete se invoca siempre
+          complete: () => {console.log("comunicaión completada");},
+          error: (error_rx) => {console.error(error_rx);},
+          next: () => {
+            //quiero mostrar los ids de los alumnos rx
+            //actualizar la lista visible
+            //eliminar de la vista el alumno que se ha eliminado
+            this.lista_alumnos = this.lista_alumnos.filter(al_aux=> al_aux.id!=id);
+            
+            //podrías hacer un do while y sería más eficiente :)
+            //filter (condición que quiero cumplan)
+          }
+        }
+      );
+    } else {
+      console.log("El usuario no ha confirmado la operación");
+    }
     
+    
+  }
+
+  saludar ()
+  {
+    console.log("Hola socio");
+  }
+
+  checkTocado() {
+    this.automatico = !this.automatico;//actualizo el valor
+    console.log("actulizar automaticamente = " + this.automatico);
+    if (this.automatico)
+    {
+      //programar la llamada periódica
+      setInterval(this.saludar, 3000);
+    } else {
+      //desprogramar la llamada periódica
+      //TODO haced que se desprograme la alarma
+    }
   }
 
 }//

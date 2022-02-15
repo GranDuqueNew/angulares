@@ -19,13 +19,14 @@ export class AlumnoService {
 //leer alumnos (del servidor)
   leerAlumnos () :Observable<Array<Alumno>>
   { //GET http://localhost:3000
-    return this.http.get<Array<Alumno>>("http://localhost:3000/alumno");
+    return this.http.get<Array<Alumno>>("http://localhost:8085/alumno");
 
   }
 //borrar 1 alumno
-  borrarAlumno (id:number)
+//retornamos un Observable<tipoRecibidoEnElCuerpo>
+  borrarAlumno (id:number):Observable<void>
   {
-    this.http.delete("http://localhost:3000/alumno/"+id);
+    return this.http.delete<void>("http://localhost:8085/alumno/"+id);
   }
   
   //leer 1 alumno
