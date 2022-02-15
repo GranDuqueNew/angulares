@@ -34,17 +34,8 @@ id_alarma:any;
 
   ngOnInit(): void {
     //let automatico:boolean = false;
-    this.servicio_alumnos.leerAlumnos().subscribe(
-      {
-        complete: () => {console.log("comunicaión completada");},
-        error: (error_rx) => {console.error(error_rx);},
-        next: (listado_alumnos_rx) => {
-          //quiero mostrar los ids de los alumnos rx
-          listado_alumnos_rx.forEach( alumno => {console.log(alumno.id);})
-          this.lista_alumnos = listado_alumnos_rx;
-        }
-      }
-    );
+    //this.servicio_alumnos.leerAlumnosFetch();
+    this.getAlumnosFromService();
     
   }
 
@@ -79,6 +70,22 @@ id_alarma:any;
     
   }
 
+  //DRY 
+  getAlumnosFromService ()
+  {
+    this.servicio_alumnos.leerAlumnos().subscribe(
+      {
+        complete: () => {console.log("comunicaión completada");},
+        error: (error_rx) => {console.error(error_rx);},
+        next: (listado_alumnos_rx) => {
+          //quiero mostrar los ids de los alumnos rx
+          listado_alumnos_rx.forEach( alumno => {console.log(alumno.id);})
+          this.lista_alumnos = listado_alumnos_rx;
+        }
+      }
+    );
+  }
+
   saludar ()
   {
     console.log("Hola socio");
@@ -91,7 +98,8 @@ id_alarma:any;
     if (this.automatico)
     {
       //programar la llamada periódica
-      this.id_alarma = setInterval(this.saludar, 3000);
+      //this.id_alarma = setInterval(this.getAlumnosFromService, 3000); //FUnción tradicional NO ser conserva el contexto
+      this.id_alarma = setInterval( ()=>this.getAlumnosFromService(), 3000);
     } else {
       //desprogramar la llamada periódica
       //TODO haced que se desprograme la alarma
