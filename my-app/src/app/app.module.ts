@@ -10,6 +10,7 @@ import { LayoutModule } from './layout/layout.module';
 import { JuegoPptComponent } from './components/juego-ppt/juego-ppt.component';
 import { MarcadorComponent } from './components/marcador/marcador.component';
 import { AlumnoComponent } from './components/alumno/alumno.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AlumnoComponent } from './components/alumno/alumno.component';
     AppRoutingModule,
     FormsModule,
     LayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

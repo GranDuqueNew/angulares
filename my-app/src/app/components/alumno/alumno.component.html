@@ -1,4 +1,6 @@
+<button class="btn btn-primary" (click)="crearAlumno()">CREAR</button>
 <div class="listaAlumnos">
+  
   <div *ngFor="let alumno of lista_alumnos" class="card" style="width: 18rem;">
     <img class="card-img-top" src="https://randomuser.me/api/portraits/men/{{alumno.id}}.jpg" alt="Card image cap">
     <div class="card-body">
@@ -10,7 +12,7 @@
       <div class="card-footer text-muted">
         <p>{{alumno.creadoEn|date:'short'}}</p>
       </div>
-      <button class="btn btn-danger" (click)="borrarAlumno(alumno.id)">BORRAR</button>
+      <button class="btn btn-danger" (click)="borrarAlumno(alumno.id)"><fa-icon [icon]="ic_papelera"></fa-icon></button>
       <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
     </div>
   </div>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Alumno } from 'src/app/models/alumno';
 import { AlumnoService } from 'src/app/services/alumno.service';
 //import { AlumnoService } from 'src/app/services/alumno.service';
+//import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-alumno',
@@ -21,6 +23,8 @@ lista_alumnos:Array<Alumno>;//esta es la lista visible
 //las propiedas del C van sin let;
 automatico:boolean;
 id_alarma:any;
+//ic_papelera = faTrash;
+ic_papelera = faTrashAlt;
   constructor(public servicio_alumnos:AlumnoService) {
     //this.servicio_alumnos = new AlumnoService();
     this.automatico=false;
@@ -37,6 +41,11 @@ id_alarma:any;
     //this.servicio_alumnos.leerAlumnosFetch();
     this.getAlumnosFromService();
     
+  }
+
+  crearAlumno ()
+  {
+    console.log("crearAlumno ");
   }
 
   borrarAlumno (id:number)
