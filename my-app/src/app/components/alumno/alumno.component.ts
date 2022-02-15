@@ -20,6 +20,7 @@ export class AlumnoComponent implements OnInit {
 lista_alumnos:Array<Alumno>;//esta es la lista visible
 //las propiedas del C van sin let;
 automatico:boolean;
+id_alarma:any;
   constructor(public servicio_alumnos:AlumnoService) {
     //this.servicio_alumnos = new AlumnoService();
     this.automatico=false;
@@ -84,15 +85,17 @@ automatico:boolean;
   }
 
   checkTocado() {
+    this.id_alarma;
     this.automatico = !this.automatico;//actualizo el valor
     console.log("actulizar automaticamente = " + this.automatico);
     if (this.automatico)
     {
       //programar la llamada periódica
-      setInterval(this.saludar, 3000);
+      this.id_alarma = setInterval(this.saludar, 3000);
     } else {
       //desprogramar la llamada periódica
       //TODO haced que se desprograme la alarma
+      clearInterval(this.id_alarma);
     }
   }
 
