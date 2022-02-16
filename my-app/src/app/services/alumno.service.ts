@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { RUTA_SERVIDOR_JAVA, RUTA_SERVIDOR_JSON } from '../config/app';
 import { Alumno } from '../models/alumno';
 
 @Injectable({
@@ -13,29 +14,30 @@ export class AlumnoService {
 
 
 
+  ruta_servidor:string = RUTA_SERVIDOR_JAVA;
+  //ruta_servidor:string = RUTA_SERVIDOR_JSON;
 
   constructor(private http:HttpClient) { }
 
 //leer alumnos (del servidor)
   leerAlumnos () :Observable<Array<Alumno>>
-  { //GET http://localhost:3000
-    return this.http.get<Array<Alumno>>("http://localhost:8085/alumno");
+  { //GET http://localhost:3000 //tipo-mime: application/json
+    return this.http.get<Array<Alumno>>(this.ruta_servidor);
 
   }
+//TODO:obter la info de las cabeceras con ANGULAR
+
 //borrar 1 alumno
 //retornamos un Observable<tipoRecibidoEnElCuerpo>
   borrarAlumno (id:number):Observable<void>
   {
-    return this.http.delete<void>("http://localhost:8085/alumno/"+id);
+    return this.http.delete<void>(this.ruta_servidor+id);
   }
-//TODO: personal haced que esta función devuelva una promesa
-  leerAlumnosFetch () 
+
+  leerAlumnosFetch ():Promise<Response>
   { 
-    fetch("http://localhost:8085/alumno/").
-    then(cuerpo=>cuerpo.json()).
-    then(lista=> {
-      lista.forEach(al => console.log("CON PROMESAS " +al.id + al.nombre))
-    }).catch(error=> console.error(error));
+    return fetch(this.ruta_servidor);
+   
 
   }
   

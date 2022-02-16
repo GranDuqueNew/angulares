@@ -11,6 +11,7 @@ import { JuegoPptComponent } from './components/juego-ppt/juego-ppt.component';
 import { MarcadorComponent } from './components/marcador/marcador.component';
 import { AlumnoComponent } from './components/alumno/alumno.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormularioAlumnoComponent } from './components/formulario-alumno/formulario-alumno.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ImcComponent,
     JuegoPptComponent,
     MarcadorComponent,
-    AlumnoComponent
+    AlumnoComponent,
+    FormularioAlumnoComponent
   ],
   imports: [
     BrowserModule,

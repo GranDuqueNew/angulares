@@ -36,17 +36,35 @@ ic_papelera = faTrashAlt;
 //previo a él AJAX XmlHttpRequest
 
 
+  fueBien (respuesta:Response)
+  {
+    respuesta.json().
+    then(lista=> {
+      lista.forEach(al => console.log("CON PROMESAS " +al.id + al.nombre))
+    }).catch(error=> console.error(error));
+
+  }
+
+  fueMal (error:any)
+  {
+    
+    console.error("error " + error.toString());
+    console.error("HA IDO FATAL");
+  }
+
   ngOnInit(): void {
     //let automatico:boolean = false;
     //this.servicio_alumnos.leerAlumnosFetch();
     this.getAlumnosFromService();
+    //con Promesas CORS
+    //this.servicio_alumnos.leerAlumnosFetch().then((respuesta)=>this.fueBien(respuesta), (error) => this.fueMal(error))
     
   }
 
-  crearAlumno ()
-  {
-    console.log("crearAlumno ");
-  }
+  // crearAlumno ()
+  // {
+  //   console.log("crearAlumno ");
+  // }
 
   borrarAlumno (id:number)
   {
