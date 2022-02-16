@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RUTA_SERVIDOR_JAVA, RUTA_SERVIDOR_JSON } from '../config/app';
@@ -12,10 +12,18 @@ export class AlumnoService {
 //POR HTTP CON EL SERVIDOR 
 //PARA OBTENER INFORMACIÓN DE ÉL
 
+/**
+ * GET - LEER
+ * POST - CREAR
+ * PUT - ACTUALIZAR
+ * DELETE - BORRAR
+ */
 
 
   ruta_servidor:string = RUTA_SERVIDOR_JAVA;
   //ruta_servidor:string = RUTA_SERVIDOR_JSON;
+
+  cabeceras: HttpHeaders = new HttpHeaders({'Content-type': 'application/json'});
 
   constructor(private http:HttpClient) { }
 
@@ -44,5 +52,11 @@ export class AlumnoService {
   //leer 1 alumno
   
   //crear 1 alumno
+
+  crearAlumno (alumno:Alumno): Observable<Alumno>
+  {
+    return this.http.post<Alumno>(this.ruta_servidor, alumno, {headers:this.cabeceras});
+  }
+
   //modificar 1 alumno
 }
