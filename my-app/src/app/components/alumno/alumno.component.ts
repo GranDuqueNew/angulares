@@ -4,6 +4,7 @@ import { AlumnoService } from 'src/app/services/alumno.service';
 //import { AlumnoService } from 'src/app/services/alumno.service';
 //import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-alumno',
@@ -53,23 +54,22 @@ ic_papelera = faTrashAlt;
   }
 
   ngOnInit(): void {
-    //let automatico:boolean = false;
-    //this.servicio_alumnos.leerAlumnosFetch();
+    
+    
     this.getAlumnosFromService();
+    
+    
     //con Promesas CORS
     //this.servicio_alumnos.leerAlumnosFetch().then((respuesta)=>this.fueBien(respuesta), (error) => this.fueMal(error))
-    
+    //con Acceso a las cabeceras
+    //this.getAlumnosFromServiceConCabeceras();
   }
 
-  // crearAlumno ()
-  // {
-  //   console.log("crearAlumno ");
-  // }
+
 
   borrarAlumno (id:number)
   {
     console.log("ha tocado borrar " + id);
-    //TODO: llamar al servicio de alumnos para borrar
     if (confirm(`¿Deseas eliminar al alumno ${id}`))
     {
 
@@ -108,6 +108,43 @@ ic_papelera = faTrashAlt;
           //quiero mostrar los ids de los alumnos rx
           listado_alumnos_rx.forEach( alumno => {console.log(alumno.id);})
           this.lista_alumnos = listado_alumnos_rx;
+        }
+      }
+    );
+  }
+
+
+  mostrarCabeceras (http_response: HttpResponse<Array<Alumno>>)
+  {
+    //tipo mime
+    console.log("TIPO MIME = "+ http_response.headers.get('content-type'));
+    //status
+    console.log("STATUS = "+ http_response.status);
+    //status text
+    console.log("TIPO MIME = "+ http_response.statusText);
+
+  }
+
+  mostrarError (error:any)
+  {
+    //STATUS ERROR
+    console.log(error.status);
+    //MENSAJE ERROR
+    console.log(error.message);
+  }
+
+  getAlumnosFromServiceConCabeceras ()
+  {
+    this.servicio_alumnos.leerAlumnosConCabeceras().subscribe(
+      {
+        complete: () => {console.log("comunicaión completada");},
+        error: (error_rx) => {this.mostrarError(error_rx)},
+        next: (http_rx) => {
+          //quiero mostrar los ids de los alumnos rx
+          //listado_alumnos_rx.forEach( alumno => {console.log(alumno.id);})
+          //this.lista_alumnos = <Array<Alumno>>http_rx.body;
+          this.mostrarCabeceras(http_rx);
+          this.lista_alumnos = http_rx.body as Array<Alumno>;//otra forma de convertir el tipo / casting
         }
       }
     );

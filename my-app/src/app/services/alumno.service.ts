@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RUTA_SERVIDOR_JAVA, RUTA_SERVIDOR_JSON } from '../config/app';
@@ -31,7 +31,12 @@ export class AlumnoService {
   leerAlumnos () :Observable<Array<Alumno>>
   { //GET http://localhost:3000 //tipo-mime: application/json
     return this.http.get<Array<Alumno>>(this.ruta_servidor);
+  }
 
+  leerAlumnosConCabeceras () :Observable<HttpResponse<Array<Alumno>>>
+  { //añadiendo el parámetro {observe : 'response'} me da acceso al mensaje HTTP de respuesta completo
+
+    return this.http.get<Array<Alumno>>(this.ruta_servidor, {observe : 'response'});
   }
 //TODO:obter la info de las cabeceras con ANGULAR
 
