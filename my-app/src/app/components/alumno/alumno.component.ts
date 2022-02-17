@@ -4,7 +4,9 @@ import { AlumnoService } from 'src/app/services/alumno.service';
 //import { AlumnoService } from 'src/app/services/alumno.service';
 //import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faEdit } from '@fortawesome/free-regular-svg-icons';
 import { HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-alumno',
@@ -26,7 +28,9 @@ automatico:boolean;
 id_alarma:any;
 //ic_papelera = faTrash;
 ic_papelera = faTrashAlt;
-  constructor(public servicio_alumnos:AlumnoService) {
+ic_editar = faEdit;
+
+  constructor(public servicio_alumnos:AlumnoService, private router:Router) {
     //this.servicio_alumnos = new AlumnoService();
     this.automatico=false;
    } 
@@ -95,6 +99,15 @@ ic_papelera = faTrashAlt;
     }
     
     
+  }
+
+  editarAlumno(alumno:Alumno)
+  {
+    console.log("quiere editar al alumno " + alumno.id);
+
+    //this.router.navigateByUrl("/alumno/form");
+    //this.router.navigateByUrl("/alumno/form/edit");
+    this.router.navigate(["/alumno/form/edit", alumno.id]);
   }
 
   //DRY 

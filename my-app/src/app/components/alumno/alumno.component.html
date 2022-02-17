@@ -13,6 +13,7 @@
         <p>{{alumno.creadoEn|date:'short'}}</p>
       </div>
       <button class="btn btn-danger" (click)="borrarAlumno(alumno.id)"><fa-icon [icon]="ic_papelera"></fa-icon></button>
+      <button class="btn btn-success" (click)="editarAlumno(alumno)"><fa-icon [icon]="ic_editar"></fa-icon></button>
       <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
     </div>
   </div>

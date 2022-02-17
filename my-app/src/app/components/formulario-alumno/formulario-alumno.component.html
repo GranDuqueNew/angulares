@@ -10,7 +10,7 @@ formulario es la variable formulario_alumno
 #nombre="ngModel" -- le digo a Angular que esto es un atributo/campo
 del formulario
 -->
-<form #formulario_alumno="ngForm" (ngSubmit)="crearAlumno()">
+<form #formulario_alumno="ngForm" (ngSubmit)="en_edicion ? editarAlumno() : crearAlumno()">
     <div class="form-group">
       <label for="nombre">Nombre</label>
       <input type="text" #nombre="ngModel" [(ngModel)]="alumno.nombre" class="form-control" id="nombre" name="nombre" placeholder="Introduzca su nombre" required pattern=".{4,15}">
@@ -40,6 +40,8 @@ del formulario
         </div>
     </div>
     <br>
-    <button type="submit" class="btn btn-primary">Crear</button>
+    <!-- <button *ngIf="!en_edicion" type="submit" class="btn btn-primary">Crear</button>
+    <button *ngIf="en_edicion" type="submit" class="btn btn-primary">Actualizar</button> -->
+    <button type="submit" [class]="estiloBoton()">{{(en_edicion) ? 'Actualizar' : 'Crear'}}</button>
   </form>
   <!-- <app-dni></app-dni> -->

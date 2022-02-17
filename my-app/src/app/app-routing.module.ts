@@ -13,7 +13,8 @@ const routes: Routes = [
   {path:"imc", component: ImcComponent},
   {path:"ppt", component: JuegoPptComponent},//piedra papel tijera ppt
   {path:"alumno", component: AlumnoComponent},
-  {path:"alumno/form", component: FormularioAlumnoComponent}
+  {path:"alumno/form", component: FormularioAlumnoComponent},
+  {path:"alumno/form/edit/:id", component: FormularioAlumnoComponent}
 
 ];
 

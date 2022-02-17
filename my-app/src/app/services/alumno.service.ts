@@ -33,30 +33,33 @@ export class AlumnoService {
     return this.http.get<Array<Alumno>>(this.ruta_servidor);
   }
 
+  leerAlumnoPorId (id_alumno:number) :Observable<Alumno>
+  { //GET http://localhost:3000 //tipo-mime: application/json
+    return this.http.get<Alumno>(this.ruta_servidor+"/"+id_alumno);
+  }
+
   leerAlumnosConCabeceras () :Observable<HttpResponse<Array<Alumno>>>
   { //añadiendo el parámetro {observe : 'response'} me da acceso al mensaje HTTP de respuesta completo
 
     return this.http.get<Array<Alumno>>(this.ruta_servidor, {observe : 'response'});
   }
+
+
+  leerAlumnosFetch ():Promise<Response>
+  { 
+    return fetch(this.ruta_servidor);
+  }
+
+
 //TODO:obter la info de las cabeceras con ANGULAR
 
 //borrar 1 alumno
 //retornamos un Observable<tipoRecibidoEnElCuerpo>
   borrarAlumno (id:number):Observable<void>
   {
-    return this.http.delete<void>(this.ruta_servidor+id);
+    return this.http.delete<void>(this.ruta_servidor+"/"+id);
   }
 
-  leerAlumnosFetch ():Promise<Response>
-  { 
-    return fetch(this.ruta_servidor);
-   
-
-  }
-  
-  //leer 1 alumno
-  
-  //crear 1 alumno
 
   crearAlumno (alumno:Alumno): Observable<Alumno>
   {
@@ -64,4 +67,10 @@ export class AlumnoService {
   }
 
   //modificar 1 alumno
+
+  //opcional: puedo rx el id por separado
+  actualizarAlumno (alumno:Alumno):Observable<Alumno>
+  {
+    return this.http.put<Alumno>(this.ruta_servidor+"/"+alumno.id,alumno, {headers:this.cabeceras});
+  }
 }
