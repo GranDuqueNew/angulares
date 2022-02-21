@@ -7,6 +7,7 @@ import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
 import { HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { RUTA_SERVIDOR_JAVA } from 'src/app/config/app';
 
 @Component({
   selector: 'app-alumno',
@@ -21,7 +22,7 @@ export class AlumnoComponent implements OnInit {
 //DI inyección de dependencias -
 //servicio_alumnos:AlumnoService;
 
-
+ruta_servidor:string = RUTA_SERVIDOR_JAVA;
 lista_alumnos:Array<Alumno>;//esta es la lista visible
 //las propiedas del C van sin let;
 automatico:boolean;

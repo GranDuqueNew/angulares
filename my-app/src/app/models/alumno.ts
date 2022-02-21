@@ -9,6 +9,7 @@ export class Alumno {
     email: string;
     edad: number;
     creadoEn: string;//DATE
+    fotoHashCode: number;//este atributo viene con datos del servidor si el alumno tiene foto. Si no, viene a null
 
     constructor ()
     {
