@@ -59,11 +59,13 @@ export class FormularioAlumnoComponent implements OnInit {
       let id = url.substring(pos_ultima_barra + 1, url.length);
       console.log("id del alumno = " + id);
 
+      this.alumno = this.servicio_alumnos.leerAlumnoEnEdicion();
       //otra forma de sacar el valor del ID "estilo Angular"
       //this.ruta.snapshot esto es como el href
       let id2 = this.ruta.snapshot.paramMap.get('id');
       console.log("id2 del alumno = " + id2);
 
+      /*
       this.servicio_alumnos.leerAlumnoPorId(+id).subscribe(
         {
           complete: () => console.log('ha terminado'),
@@ -77,7 +79,7 @@ export class FormularioAlumnoComponent implements OnInit {
 
           }
         }
-      )
+      )*/
 
 
 

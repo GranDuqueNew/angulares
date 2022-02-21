@@ -105,6 +105,8 @@ ic_editar = faEdit;
   editarAlumno(alumno:Alumno)
   {
     console.log("quiere editar al alumno " + alumno.id);
+    //otra forma de comaprtir info entre C's vía servicio común
+    this.servicio_alumnos.guardarAlumnoEnEdicion(alumno);
 
     //this.router.navigateByUrl("/alumno/form");
     //this.router.navigateByUrl("/alumno/form/edit");

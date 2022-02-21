@@ -19,6 +19,8 @@ export class AlumnoService {
  * DELETE - BORRAR
  */
 
+  alumno_en_edicion:Alumno;
+
 
   ruta_servidor:string = RUTA_SERVIDOR_JAVA;
   //ruta_servidor:string = RUTA_SERVIDOR_JSON;
@@ -26,6 +28,17 @@ export class AlumnoService {
   cabeceras: HttpHeaders = new HttpHeaders({'Content-type': 'application/json'});
 
   constructor(private http:HttpClient) { }
+
+  guardarAlumnoEnEdicion (alumno:Alumno)
+  {
+    this.alumno_en_edicion = alumno;
+  }
+
+  leerAlumnoEnEdicion ():Alumno
+  {
+    return this.alumno_en_edicion;
+  }
+
 
 //leer alumnos (del servidor)
   leerAlumnos () :Observable<Array<Alumno>>
