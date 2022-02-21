@@ -12,6 +12,7 @@ import { MarcadorComponent } from './components/marcador/marcador.component';
 import { AlumnoComponent } from './components/alumno/alumno.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormularioAlumnoComponent } from './components/formulario-alumno/formulario-alumno.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FormularioAlumnoComponent } from './components/formulario-alumno/formul
     FormsModule,
     LayoutModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
