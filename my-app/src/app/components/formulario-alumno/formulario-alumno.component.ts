@@ -105,7 +105,13 @@ export class FormularioAlumnoComponent implements OnInit {
 
   editarAlumno() {
     console.log("Tocó Actualizar Alumno");
-    this.servicio_alumnos.actualizarAlumno(this.alumno).subscribe(this.observador);
+
+    if (this.foto_seleccionada!=null)
+    {
+      this.servicio_alumnos.actualizarAlumnoConFoto(this.alumno, this.foto_seleccionada).subscribe(this.observador);
+    } else {
+      this.servicio_alumnos.actualizarAlumno(this.alumno).subscribe(this.observador);
+    }
   }
 
   public crearAlumno() {
@@ -113,16 +119,12 @@ export class FormularioAlumnoComponent implements OnInit {
     //this.alumno -- validado y listo para hacer POST
     //si hay foto, llamo a crear alumno con foto
     //si no, pues al crear normal
-
     if (this.foto_seleccionada!=null)
     {
       this.servicio_alumnos.crearAlumnoConFoto(this.alumno, this.foto_seleccionada).subscribe(this.observador);
     } else {
       this.servicio_alumnos.crearAlumno(this.alumno).subscribe(this.observador);
     }
-    
-
-
   }
 
   seleccionarFoto(evento: Event) {

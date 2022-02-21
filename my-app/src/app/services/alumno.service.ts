@@ -87,4 +87,19 @@ export class AlumnoService {
   {
     return this.http.put<Alumno>(this.ruta_servidor+"/"+alumno.id,alumno, {headers:this.cabeceras});
   }
+
+
+  actualizarAlumnoConFoto (alumno:Alumno, archivo:File): Observable<Alumno>
+  {
+//declaramos una variable local que represente el FormData
+    let formData = new FormData();
+
+        formData.append('nombre', alumno.nombre);
+        formData.append('apellido', alumno.apellido);
+        formData.append('email', alumno.email);
+        formData.append('edad', alumno.edad+'');
+        formData.append('archivo', archivo);//BLOB Binary Large Object
+
+    return this.http.put<Alumno>(this.ruta_servidor+"/editar-con-foto/"+alumno.id, formData);
+  }
 }
