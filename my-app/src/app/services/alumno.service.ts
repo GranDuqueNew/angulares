@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RUTA_SERVIDOR_JAVA, RUTA_SERVIDOR_JSON } from '../config/app';
@@ -63,6 +63,12 @@ export class AlumnoService {
     return fetch(this.ruta_servidor);
   }
 
+
+  leerAlumnosPorPaginas (page:number, size:number):Observable<any>
+  {
+    let parametros = new HttpParams().set('page', page).set('size', size);
+    return this.http.get<any>(this.ruta_servidor+"/pagina", {params : parametros});
+  }
 
 //TODO:obter la info de las cabeceras con ANGULAR
 

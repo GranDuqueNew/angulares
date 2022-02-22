@@ -13,27 +13,31 @@ import { AlumnoComponent } from './components/alumno/alumno.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormularioAlumnoComponent } from './components/formulario-alumno/formulario-alumno.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { AlumnoPagComponent } from './components/alumno-pag/alumno-pag.component';
 
 @NgModule({
-  declarations: [
+  declarations: [ //aquí van los componentes que pertenecen al módulo
     AppComponent,
     DniComponent,
     ImcComponent,
     JuegoPptComponent,
     MarcadorComponent,
     AlumnoComponent,
-    FormularioAlumnoComponent
+    FormularioAlumnoComponent,
+    AlumnoPagComponent
   ],
-  imports: [
+  imports: [ //aquí los módulos - agrupación funcional 
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     LayoutModule,
     HttpClientModule,
     FontAwesomeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatPaginatorModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [],//servicios
+  bootstrap: [AppComponent] //coponente inicial
 })
 export class AppModule { }

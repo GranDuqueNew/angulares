@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AlumnoPagComponent } from './components/alumno-pag/alumno-pag.component';
 import { AlumnoComponent } from './components/alumno/alumno.component';
 import { DniComponent } from './components/dni/dni.component';
 import { FormularioAlumnoComponent } from './components/formulario-alumno/formulario-alumno.component';
@@ -14,7 +15,12 @@ const routes: Routes = [
   {path:"ppt", component: JuegoPptComponent},//piedra papel tijera ppt
   {path:"alumno", component: AlumnoComponent},
   {path:"alumno/form", component: FormularioAlumnoComponent},
-  {path:"alumno/form/edit/:id", component: FormularioAlumnoComponent}
+  {path:"alumno/form/edit/:id", component: FormularioAlumnoComponent},
+  {path:"alumnopag", component: AlumnoPagComponent}
+  
+
+  
+
 
 ];
 
