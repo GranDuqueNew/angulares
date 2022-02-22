@@ -9,6 +9,7 @@ import { MarcadorComponent } from '../marcador/marcador.component';
 })
 export class JuegoPptComponent implements OnInit, AfterViewInit {
 
+  nombrejugadorjuego:string;
   seleccionado:boolean=false;
   ids_botones: Array<string> = ["piedra", "papel", "tijera"];
   img_botones: Array<string> = ["rock", "paper", "scissors"];

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Marcador } from 'src/app/models/marcador';
 
 @Component({
@@ -18,6 +18,7 @@ export class MarcadorComponent implements OnInit {
 
   marcador_actual:Marcador;
   resultado:string;
+  @Input() nombrejugadormarcador:string;
   
   constructor() { 
     this.marcador_actual = new Marcador();
