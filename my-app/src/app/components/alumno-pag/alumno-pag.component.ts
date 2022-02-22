@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { RUTA_SERVIDOR_JAVA } from 'src/app/config/app';
 import { Alumno } from 'src/app/models/alumno';
 import { AlumnoService } from 'src/app/services/alumno.service';
@@ -8,7 +9,7 @@ import { AlumnoService } from 'src/app/services/alumno.service';
   templateUrl: './alumno-pag.component.html',
   styleUrls: ['./alumno-pag.component.css']
 })
-export class AlumnoPagComponent implements OnInit {
+export class AlumnoPagComponent implements OnInit, AfterViewInit {
 
 
   ruta_servidor:string = RUTA_SERVIDOR_JAVA;
@@ -19,13 +20,38 @@ export class AlumnoPagComponent implements OnInit {
   pageSizeOptions: number[] = [2, 4, 6, 8];
   paginaActual: number = 0;
 
+  @ViewChild(MatPaginator) paginador:MatPaginator;
+
   constructor(public servicio_alumnos:AlumnoService) { }
+
+
+  ngAfterViewInit(): void {
+    console.log("después de cargarse los hijos");
+    this.paginador._intl.itemsPerPageLabel="Registros por página";
+    this.paginador._intl.nextPageLabel="Siguiente";
+    this.paginador._intl.previousPageLabel="Anterior";
+    this.paginador._intl.firstPageLabel="Primera página";
+    this.paginador._intl.lastPageLabel="última página";
+
+
+  }
 
   ngOnInit(): void {
     
     
     this.getAlumnosFromService();
     
+  }
+
+
+  paginar (evento:PageEvent)
+  {
+    this.paginaActual = evento.pageIndex;
+    this.totalPorPagina = evento.pageSize;
+
+    //TODO ?¿
+    this.getAlumnosFromService();
+
   }
 
   getAlumnosFromService ()
