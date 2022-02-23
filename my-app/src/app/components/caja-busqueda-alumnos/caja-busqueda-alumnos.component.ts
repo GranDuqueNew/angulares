@@ -25,14 +25,15 @@ export class CajaBusquedaAlumnosComponent implements OnInit {
     let entrada : HTMLInputElement =  <HTMLInputElement>event.target;
     console.log("entrada = " + entrada.value);
     this.termino_busqueda = entrada.value;
-
+    //usamos el otro método
   }
 
   buscarAlumnoSinEvento ()
   {
     console.log("entrada sin evento = " + this.caja_input.nativeElement.value);
     this.termino_busqueda =this.caja_input.nativeElement.value;
-
+    //comunico con el servicio
+    this.servicio_com.comunicaBusquedaNueva(this.termino_busqueda);
   }
 
 }

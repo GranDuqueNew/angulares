@@ -121,4 +121,10 @@ export class AlumnoService {
 
     return this.http.put<Alumno>(this.ruta_servidor+"/editar-con-foto/"+alumno.id, formData);
   }
+
+  buscarAlumnosPorNombreOApellido (termino:string) :Observable<Array<Alumno>>
+  { //GET http://localhost:3000 
+    return this.http.get<Array<Alumno>>(this.ruta_servidor+"/busqueda/nomoape/"+termino);
+    //http://localhost:8085/alumno/busqueda/nomoape/c
+  }
 }
