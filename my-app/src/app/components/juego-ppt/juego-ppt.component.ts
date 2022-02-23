@@ -9,8 +9,8 @@ import { MarcadorComponent } from '../marcador/marcador.component';
 })
 export class JuegoPptComponent implements OnInit, AfterViewInit {
 
-  nombrejugadorjuego:string;
-  seleccionado:boolean=false;
+  nombrejugadorjuego: string;
+  seleccionado: boolean = false;
   ids_botones: Array<string> = ["piedra", "papel", "tijera"];
   img_botones: Array<string> = ["rock", "paper", "scissors"];
 
@@ -19,27 +19,27 @@ export class JuegoPptComponent implements OnInit, AfterViewInit {
     [1, 0, -1],
     [-1, 1, 0]
   ];
- 
+
   //resultado?:string;//? TS me permite no inicializar un dato - opcional
   //resultado:string;//? TS me permite no inicializar un dato - opcional
   //marcador_actual:Marcador;
 
   //@ViewChild(MarcadorComponent) marcador_componente?:MarcadorComponent;
   //@ViewChild(MarcadorComponent) marcador_componente2?:MarcadorComponent;
-  
+
   //para 1 marcador
-  @ViewChild(MarcadorComponent) marcador_componente1:MarcadorComponent;
+  @ViewChild(MarcadorComponent) marcador_componente1: MarcadorComponent;
   //@ViewChild(MarcadorComponent) marcador_componente1;
-  
+
   //para varios componentes hijos del mismo tipo
   // @ViewChildren(MarcadorComponent) marcadores?:QueryList<MarcadorComponent>;
- //para acceder a varios compoenente por su #nombre
- //@ViewChild('marcador1') marcador1?:MarcadorComponent;
- //@ViewChild('marcador2') marcador2?:MarcadorComponent;
+  //para acceder a varios compoenente por su #nombre
+  //@ViewChild('marcador1') marcador1?:MarcadorComponent;
+  //@ViewChild('marcador2') marcador2?:MarcadorComponent;
 
 
 
-  constructor() { 
+  constructor() {
     //this.resultado='';
     //this.marcador_componente1 = new MarcadorComponent()
     console.log("constructor JuegoPptComponent");
@@ -47,14 +47,13 @@ export class JuegoPptComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     console.log("ngOnInit JuegoPptComponent");
-    
+
   }
 
   //este método se invoca automáticamente
   //cuando se ha renderizado toda la plantilla
   //incluidos los hijos
-  ngAfterViewInit ():void
-  {
+  ngAfterViewInit(): void {
     console.log("ngAfterViewInit JuegoPptComponent");
     //ya puedes utilizar el hijo this.marcador_componente
     // if (this.marcadores)
@@ -104,11 +103,10 @@ export class JuegoPptComponent implements OnInit, AfterViewInit {
     return Math.floor(Math.random() * 3);
   }
 
-  mostrarResultado (resultado:number):void
-  {
+  mostrarResultado(resultado: number): void {
 
     this.marcador_componente1.actualizarMarcador(resultado);
-    
+
     //this.marcador_componente2?.actualizarMarcador(resultado);
     //esto es el componente hijo
     //this.marcador_componente?.actualizarMarcador(resultado);
@@ -152,10 +150,23 @@ export class JuegoPptComponent implements OnInit, AfterViewInit {
 
       //TODO: mostrar el resultado
       console.log(result);
-      this.mostrarResultado (result);
+      this.mostrarResultado(result);
 
       localStorage.removeItem("selected");
     }
+  }
+
+  informarMarcador(marcador_hijo: Marcador) {
+    if (marcador_hijo.puntuacion_jugador > marcador_hijo.puntuacion_maquina) 
+    {
+        alert(`${this.nombrejugadorjuego} VAS GANANDO!`);
+    }   else if (marcador_hijo.puntuacion_jugador < marcador_hijo.puntuacion_maquina) 
+      {
+        alert(`${this.nombrejugadorjuego} VAS PALMANDO, ÁNIMO!`);
+      } else 
+        {
+          alert(`EMATE ... INtríngulis`);
+        }
   }
 
 }

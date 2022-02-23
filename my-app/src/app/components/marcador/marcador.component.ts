@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Marcador } from 'src/app/models/marcador';
 
 @Component({
@@ -19,6 +19,7 @@ export class MarcadorComponent implements OnInit {
   marcador_actual:Marcador;
   resultado:string;
   @Input() nombrejugadormarcador:string;
+  @Output() emisorMarcador = new EventEmitter<Marcador>();//<TIpo de dato que envío del hijo al Padre>
   
   constructor() { 
     this.marcador_actual = new Marcador();
@@ -81,6 +82,8 @@ export class MarcadorComponent implements OnInit {
           this.marcador_actual.puntuacion_jugador = this.marcador_actual.puntuacion_jugador+1;
           break;
    }
+   //AVISO AL PADRE DEL MARCADOR NUEVO MEDIATE mi OutPut / emisor
+   this.emisorMarcador.emit(this.marcador_actual);
   }
 
   guardarMarcador()

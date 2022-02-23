@@ -1,0 +1,5 @@
+<div class="form-group">
+    <label for="busqueda">Búsqueda de alumnos</label>
+    <!-- <input type="search"  (keydown.enter)="buscarAlumno($event)" class="form-control" id="busqueda" name="busqueda" aria-describedby="emailHelp" placeholder="Intro nombre o apellido"> -->
+    <input type="search" #cajabusqueda (keydown.enter)="buscarAlumnoSinEvento()" class="form-control" id="busqueda" name="busqueda" aria-describedby="emailHelp" placeholder="Intro nombre o apellido">
+</div>

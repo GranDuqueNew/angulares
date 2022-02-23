@@ -15,6 +15,9 @@ import { FormularioAlumnoComponent } from './components/formulario-alumno/formul
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { AlumnoPagComponent } from './components/alumno-pag/alumno-pag.component';
+import { BusquedaPorNombreComponent } from './components/busqueda-por-nombre/busqueda-por-nombre.component';
+import { CajaBusquedaAlumnosComponent } from './components/caja-busqueda-alumnos/caja-busqueda-alumnos.component';
+import { ListaAlumnosComponent } from './components/lista-alumnos/lista-alumnos.component';
 
 @NgModule({
   declarations: [ //aquí van los componentes que pertenecen al módulo
@@ -25,7 +28,10 @@ import { AlumnoPagComponent } from './components/alumno-pag/alumno-pag.component
     MarcadorComponent,
     AlumnoComponent,
     FormularioAlumnoComponent,
-    AlumnoPagComponent
+    AlumnoPagComponent,
+    BusquedaPorNombreComponent,
+    CajaBusquedaAlumnosComponent,
+    ListaAlumnosComponent
   ],
   imports: [ //aquí los módulos - agrupación funcional 
     BrowserModule,
