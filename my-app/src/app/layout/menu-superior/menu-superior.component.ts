@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuSuperiorComponent implements OnInit {
 
-  //autor:Autor
+  //autor:Autor 
   constructor() { }
 
   ngOnInit(): void {

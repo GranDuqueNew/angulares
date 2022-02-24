@@ -18,6 +18,7 @@ import { AlumnoPagComponent } from './components/alumno-pag/alumno-pag.component
 import { BusquedaPorNombreComponent } from './components/busqueda-por-nombre/busqueda-por-nombre.component';
 import { CajaBusquedaAlumnosComponent } from './components/caja-busqueda-alumnos/caja-busqueda-alumnos.component';
 import { ListaAlumnosComponent } from './components/lista-alumnos/lista-alumnos.component';
+import { ElTiempoComponent } from './components/el-tiempo/el-tiempo.component';
 
 @NgModule({
   declarations: [ //aquí van los componentes que pertenecen al módulo
@@ -31,7 +32,8 @@ import { ListaAlumnosComponent } from './components/lista-alumnos/lista-alumnos.
     AlumnoPagComponent,
     BusquedaPorNombreComponent,
     CajaBusquedaAlumnosComponent,
-    ListaAlumnosComponent
+    ListaAlumnosComponent,
+    ElTiempoComponent
   ],
   imports: [ //aquí los módulos - agrupación funcional 
     BrowserModule,

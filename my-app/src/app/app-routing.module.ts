@@ -4,6 +4,7 @@ import { AlumnoPagComponent } from './components/alumno-pag/alumno-pag.component
 import { AlumnoComponent } from './components/alumno/alumno.component';
 import { BusquedaPorNombreComponent } from './components/busqueda-por-nombre/busqueda-por-nombre.component';
 import { DniComponent } from './components/dni/dni.component';
+import { ElTiempoComponent } from './components/el-tiempo/el-tiempo.component';
 import { FormularioAlumnoComponent } from './components/formulario-alumno/formulario-alumno.component';
 import { ImcComponent } from './components/imc/imc.component';
 import { JuegoPptComponent } from './components/juego-ppt/juego-ppt.component';
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path:"alumno/form", component: FormularioAlumnoComponent},
   {path:"alumno/form/edit/:id", component: FormularioAlumnoComponent},
   {path:"alumnopag", component: AlumnoPagComponent},
-  {path:"busquedapornombre", component: BusquedaPorNombreComponent}
+  {path:"busquedapornombre", component: BusquedaPorNombreComponent},
+  {path:"eltiempo", component: ElTiempoComponent}
   
 
   
