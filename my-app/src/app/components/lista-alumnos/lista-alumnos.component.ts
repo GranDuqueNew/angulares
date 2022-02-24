@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Alumno } from 'src/app/models/alumno';
 import { AlumnoService } from 'src/app/services/alumno.service';
 import { ComunicadorService } from 'src/app/services/comunicador.service';
@@ -8,26 +9,39 @@ import { ComunicadorService } from 'src/app/services/comunicador.service';
   templateUrl: './lista-alumnos.component.html',
   styleUrls: ['./lista-alumnos.component.css']
 })
-export class ListaAlumnosComponent implements OnInit {
+export class ListaAlumnosComponent implements OnInit, OnDestroy {
 
-  //TODO: escuchar la tubería / servicio
-
+  
   termino_busqueda:string;
   lista_alumnos:Array<Alumno>;
+  subscription: Subscription;
+
 
   constructor(public servicio_com:ComunicadorService, public servicio_alumnos:AlumnoService)
 
   { 
     this.termino_busqueda='';
     this.lista_alumnos = new Array<Alumno>();
-    this.servicio_com.palabraNuevaAnunciada.subscribe(
+    this.subscription = this.servicio_com.palabraNuevaAnunciada.subscribe(
       termino_busqueda_rx => {
        console.log("termino de búsqueda rx " + termino_busqueda_rx);
-       this.termino_busqueda = termino_busqueda_rx;
+       if (termino_busqueda_rx=='')
+       {
+         //limpiar lista;
+        this.lista_alumnos.length=0;
+       } else {
+
+      this.termino_busqueda = termino_busqueda_rx;
        this.busquedaDeAlumnos(termino_busqueda_rx);
+       }
+       
     });
 
 
+  }
+  ngOnDestroy(): void {
+    //dejo de escuchar, prevengo "perdidas de memoria"
+   this.subscription.unsubscribe();
   }
 
   ngOnInit(): void {
@@ -48,10 +62,11 @@ export class ListaAlumnosComponent implements OnInit {
          console.log("Datos RX " + listado_alumnos_rx.length);
         listado_alumnos_rx.forEach( alumno => {console.log(alumno.nombre + " " + alumno.apellido );})
         this.lista_alumnos = listado_alumnos_rx;
-        //TODO: mostremos la lista recibida en el compoente lista-alumnos
-        //tb jugar con el search para que cuando limpie, se actualice la lista
+        
        } else {
          alert("su búsqueda no produjo resultados :(");
+         //limpiar lista también en caso de no producir resultados;
+        this.lista_alumnos.length=0;
        }
        
          }

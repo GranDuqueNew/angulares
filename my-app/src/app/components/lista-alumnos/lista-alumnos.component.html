@@ -1,1 +1,5 @@
-<p>lista-alumnos works!</p>
+<!-- <p>l   ista-alumnos works!</p> -->
+<ul class="list-group">
+    <li class="list-group-item active">Lista de alumnos</li>
+    <li class="list-group-item" *ngFor="let verAlumno of lista_alumnos">{{verAlumno.nombre}}, {{verAlumno.apellido}}</li>
+</ul>

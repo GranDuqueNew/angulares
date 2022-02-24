@@ -36,4 +36,11 @@ export class CajaBusquedaAlumnosComponent implements OnInit {
     this.servicio_com.comunicaBusquedaNueva(this.termino_busqueda);
   }
 
+  busqueda2()
+  {
+    console.log("search tocado :=)");
+    //la caja está limpia
+    this.servicio_com.comunicaBusquedaNueva("");
+  }
+
 }
