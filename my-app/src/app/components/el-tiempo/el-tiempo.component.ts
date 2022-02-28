@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
+import { ElTiempoService } from 'src/app/services/el-tiempo.service';
 
 @Component({
   selector: 'app-el-tiempo',
@@ -21,7 +22,7 @@ export class ElTiempoComponent implements OnInit, AfterViewInit {
    private map;
 
 
-  constructor() { }
+  constructor(public eltiempo_service: ElTiempoService) { }
   ngAfterViewInit(): void {
     //throw new Error('Method not implemented.');
     //se ha cargado la plantilla
@@ -61,8 +62,38 @@ export class ElTiempoComponent implements OnInit, AfterViewInit {
       radius: 500
   }).addTo(this.map);
 
-  //TODO: punto 4, obtener el tiempo de esta ubicación
+  
 
+  this.eltiempo_service.obtenerTiempoConObservables(latitude, longitude).subscribe
+  (
+    {
+      complete: () => {console.log("comunicaión completada");},
+      error: (error_rx) => {console.error(error_rx);},
+      next: (infotiempo_json) => {
+        console.log("INFO TIEMPO RX = ");
+        console.log(infotiempo_json);
+        console.log("DESCRIPCIÓN = " +infotiempo_json.weather[0].description);
+        //TEMPERATURA Cº
+        console.log("TEMPERATURA Cº = " +infotiempo_json.main.temp);
+        //HUMEDAD %
+        console.log("HUMEDAD % = " +infotiempo_json.main.humidity);
+        //VIENTO M/S
+        console.log("VIENTO M/S = " +infotiempo_json.wind.speed);
+        //AMANECER -ALBA
+        console.log("AMANECER -ALBA = " +infotiempo_json.sys.sunrise);
+        //ANOCHECER -PUESTA DE SOL
+        console.log("ANOCHECER -PUESTA DE SOL = " +infotiempo_json.sys.sunset);
+        //obtengo la imagen
+        let ruta_img ="https://openweathermap.org/img/wn/"+infotiempo_json.weather[0].icon+"@2x.png";
+        console.log("ruta imagen = " +ruta_img);
+
+//TODO: punto 5, representar la información obtenida
+
+      }
+
+    }
+
+  );
   //var marker = L.marker([latitude, longitude]).addTo(this.map);
     
   }
