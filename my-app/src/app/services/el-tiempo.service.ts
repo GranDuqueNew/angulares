@@ -19,27 +19,36 @@ export class ElTiempoService {
   }
 
 
+  //tipo mime - APPLICATION/JSON
   obtenerTiempoConObservables (latitud:number, longitud:number):Observable<any>
     {
         let url:string = ElTiempoService.API_WEB_OPENWEATHER+ElTiempoService.API_WEB_OPENWEATHER_KEY+"&lat="+latitud+"&lon="+longitud;
 
-        console.log(`URL el tiempo = ${url}`);
+          console.log(`URL el tiempo = ${url}`);
 
         return this.http.get<any>(url);
     }
 
-
+//AJAX - xmlHTTPREQUEST
+//FETCH - aPI MÁS MODERNA - pROMESAS
+//oBSERVABLES - RX/JS
     
 
-    /*
-    obtenerTiempoConFetch ()
+    //tipo mime - APPLICATION/JSON
+    obtenerTiempoConFetch (latitud:number, longitud:number):Promise<Response>
     {
-      
+      let url:string = ElTiempoService.API_WEB_OPENWEATHER+ElTiempoService.API_WEB_OPENWEATHER_KEY+"&lat="+latitud+"&lon="+longitud;
+
+          console.log(`URL el tiempo = ${url}`);
+
+      return fetch(url);
+
     }
 
-
+    //jsonp ES UN MECANISMO PARA EVITAR EL CORS
+    //tipo mime - application/javascript
     obtenerTiempoConFetchJSONP ()
     {
-      
-    }*/
+      //TODO: COMUNICARME CON EL API DE EL TIEMPO USANDO JSONP
+    }
 }

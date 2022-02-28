@@ -1,7 +1,25 @@
+<!-- <app-el-tiempo> -->
 <button (click)="encuentrame()">ENCUÉNTRAME</button>
 <!--punto de anclaje para el mapa donde se va a cagar el mapa-->
 <div class="map-container">
     <div class="map-frame">
       <div id="map"></div>
     </div>
-  </div>
+</div>
+<!-- <div id="imgtiempo" [hidden]="!infoTiempoOk">
+  <img #logotiempo> 
+</div> -->
+<div id="eltiempo" [hidden]="!infoTiempoOk">
+  <span #localidad class="badge bg-primary"></span>
+  <span #descripcion class="badge bg-secondary">a</span>
+  <span #temperatura class="badge bg-success">a</span>
+  <span #humedad class="badge bg-danger">a</span>
+  <span #viento class="badge bg-warning">a</span>
+  <span #alba class="badge bg-info">s</span>
+  <span #puesta class="badge bg-dark">s</span>
+  
+
+</div>
+
+<!-- </app-el-tiempo> -->
+
