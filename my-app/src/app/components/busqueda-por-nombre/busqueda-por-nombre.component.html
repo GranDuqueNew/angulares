@@ -1,4 +1,11 @@
+<div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [checked]="repogithub" (click)="checkTocado()">
+    <label class="form-check-label" for="flexCheckDefault">
+      Usar repo de GitHub
+    </label>
+  </div>
+
 <!-- el nombre que yo obtenga aquí -->
 <app-caja-busqueda-alumnos></app-caja-busqueda-alumnos>
 <!-- se lo voy a pasar a éste-->
-<app-lista-alumnos></app-lista-alumnos>
+<app-lista-alumnos [tirodegithub]="repogithub"></app-lista-alumnos>

@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BusquedaPorNombreComponent implements OnInit {
 
-  constructor() { }
+  repogithub:boolean;
+
+  constructor() { 
+    this.repogithub = false;
+  }
 
   ngOnInit(): void {
   }
 
+  checkTocado()
+  {
+    //actualizo el estado lógico de la caja
+    //haciéndolo coincidir con su aprariencia
+    this.repogithub=!this.repogithub;
+    console.log(this.repogithub);
+  }
 }

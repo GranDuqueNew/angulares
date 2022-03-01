@@ -46,6 +46,13 @@ export class AlumnoService {
     return this.http.get<Array<Alumno>>(this.ruta_servidor);
   }
 
+   
+
+  buscarAlumnosEnGitHub () :Observable<Array<Alumno>>
+  { //GET http://localhost:3000 //tipo-mime: application/json
+    return this.http.get<Array<Alumno>>("http://my-json-server.typicode.com/valexx55/angularesjson/alumno");
+  }
+
   leerAlumnoPorId (id_alumno:number) :Observable<Alumno>
   { //GET http://localhost:3000 //tipo-mime: application/json
     return this.http.get<Alumno>(this.ruta_servidor+"/"+id_alumno);
