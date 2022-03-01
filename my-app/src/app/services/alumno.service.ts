@@ -127,4 +127,13 @@ export class AlumnoService {
     return this.http.get<Array<Alumno>>(this.ruta_servidor+"/busqueda/nomoape/"+termino);
     //http://localhost:8085/alumno/busqueda/nomoape/c
   }
+
+
+  //AÑADIMOS EL MÉTODO DE JSONP coN rx/jS
+  //con esta configuración, el JSONP se consume igual que un GET
+  //no hay que hacer ni eva ni nada
+
+  public listarJsonP():Observable<Alumno> {
+    return this.http.jsonp<Alumno>(this.ruta_servidor + "jsonp/alumno", 'callback=JSONP_CALLBACK');
+  }
 }

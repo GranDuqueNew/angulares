@@ -1,0 +1,13 @@
+EN LAS COMUNICACIONES HAY UNA LATENCIA/ASINCRONÍA
+ESE RETARDO SE GESTIONA CON DISTINTOS MÉTODOS
+
+1) AJAX - JavaScript Asíncrono - XMLHttpRequest
+2) FETCH - Promesas
+3) Observables - RX/JS
+
+
+i18n - Internacionalización : que nuestra app sea ofrecida en 
+varios idiomas
+
+l10n - Localización : idioma en curso/por defecto que utiliza
+un software/dispositivo o usuario

@@ -10,7 +10,7 @@ import { ElTiempoService } from 'src/app/services/el-tiempo.service';
 export class ElTiempoComponent implements OnInit, AfterViewInit {
 
 
-  //TODO: vamos a hacer una aplicación que:
+ 
   /**
    * 1. Nos ubique geográficamente (API GEOLOCATION Navegador)X
    * 2. Vamos a dibujar un mapa (Leaflet)X
@@ -72,6 +72,16 @@ export class ElTiempoComponent implements OnInit, AfterViewInit {
      return time;
   }
 
+  saludo ()
+  {
+    console.log("HOLA ;)");
+  }
+
+  envoltorio (infotiempo_json:any)
+  {
+    this.mostrarTiempo(infotiempo_json);
+  }
+
   dibujarPosicion (latitude:number, longitude:number)
   {
     let nivel_de_zoom = 12;
@@ -104,11 +114,23 @@ export class ElTiempoComponent implements OnInit, AfterViewInit {
   );*/
 
   //CON FETCH
-  this.eltiempo_service.obtenerTiempoConFetch(latitude, longitude)
+  /*this.eltiempo_service.obtenerTiempoConFetch(latitude, longitude)
   .then(repuesta=> repuesta.json())//la paso a objeto deserializar
   .then (infotiempo_json => this.mostrarTiempo(infotiempo_json))
-  .catch(error=> console.log(error));
-  //var marker = L.marker([latitude, longitude]).addTo(this.map);
+  .catch(error=> console.log(error));*/
+
+   //CON FETCH JSONP
+   this.eltiempo_service.obtenerTiempoConFetchJSONP(latitude, longitude, "envoltorio")
+   .then(repuesta=> repuesta.text())//la paso a objeto deserializar
+   .then (infotiempo_jsonp => 
+    {
+      console.log(' info rx jsonp '+ infotiempo_jsonp);
+      eval('this.saludo()');
+      //eval('this.'+infotiempo_jsonp);
+      eval(infotiempo_jsonp);
+    })
+   //.then (infotiempo_json => this.mostrarTiempo(infotiempo_json))
+   .catch(error=> console.log(error));
     
   }
 

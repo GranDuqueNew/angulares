@@ -15,6 +15,8 @@ export class ElTiempoService {
   static readonly API_WEB_OPENWEATHER_KEY:string = "11af6372e5b3a309ee6d413603c53656";
 
   constructor(private http:HttpClient) { 
+
+    
     
   }
 
@@ -47,8 +49,12 @@ export class ElTiempoService {
 
     //jsonp ES UN MECANISMO PARA EVITAR EL CORS
     //tipo mime - application/javascript
-    obtenerTiempoConFetchJSONP ()
+    obtenerTiempoConFetchJSONP (latitud:number, longitud:number, nombre_funcion:string):Promise<Response>
     {
-      //TODO: COMUNICARME CON EL API DE EL TIEMPO USANDO JSONP
+      let url:string = ElTiempoService.API_WEB_OPENWEATHER+ElTiempoService.API_WEB_OPENWEATHER_KEY+"&lat="+latitud+"&lon="+longitud+"&callback=this."+nombre_funcion;
+
+        console.log(`URL el tiempo = ${url}`);
+
+      return fetch(url);
     }
 }
