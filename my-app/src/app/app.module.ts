@@ -21,6 +21,8 @@ import { ListaAlumnosComponent } from './components/lista-alumnos/lista-alumnos.
 import { ElTiempoComponent } from './components/el-tiempo/el-tiempo.component';
 import { NgChartsModule } from 'ng2-charts';
 import { GraficoComponent } from './components/grafico/grafico.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ModalAlumnoComponent } from './components/modal-alumno/modal-alumno-component';
 
 @NgModule({
   declarations: [ //aquí van los componentes que pertenecen al módulo
@@ -36,7 +38,8 @@ import { GraficoComponent } from './components/grafico/grafico.component';
     CajaBusquedaAlumnosComponent,
     ListaAlumnosComponent,
     ElTiempoComponent,
-    GraficoComponent
+    GraficoComponent,
+    ModalAlumnoComponent
   ],
   imports: [ //aquí los módulos - agrupación funcional 
     BrowserModule,
@@ -47,7 +50,8 @@ import { GraficoComponent } from './components/grafico/grafico.component';
     FontAwesomeModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
-    NgChartsModule
+    NgChartsModule,
+    MatDialogModule
   ],
   providers: [],//servicios
   bootstrap: [AppComponent] //coponente inicial

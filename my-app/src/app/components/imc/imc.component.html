@@ -48,5 +48,6 @@ Su imc es {{oimc.numerico}}
     <button (click)="borrarTablaImc()">Borrar listado</button>
 </div>
 
-<app-grafico></app-grafico>
+<app-grafico [media]="mediaimc" [maximo]="maximoimc" [minimo]="minimoimc"></app-grafico>
+
 <!-- CHART JS -->

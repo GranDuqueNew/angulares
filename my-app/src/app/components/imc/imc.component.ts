@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { GraficoComponent } from '../grafico/grafico.component';
 import { Imc } from './imc';
 import { TipoImc } from './tipo-imc';
 
@@ -53,6 +54,14 @@ export class ImcComponent implements OnInit, OnDestroy {
   static readonly FOTO_SOBREPESO: string = "assets/sobrepeso.jpg";
   static readonly FOTO_OBESO: string = "assets/obeso.jpg";
 
+  mediaimc:number;
+  maximoimc:number;
+  minimoimc:number;
+
+  
+
+  
+  @ViewChild(GraficoComponent) hijo_grafico:GraficoComponent;
 
 
 
@@ -262,6 +271,13 @@ export class ImcComponent implements OnInit, OnDestroy {
     console.log("Mostrando +1kg");
     this.mostrarPorConsola(this.lista_imcs);
 
+    //TODO: obtener la media, el máximo y el mínmo del IMC
+
+    this.mediaimc= this.obtenerMediaIMC(this.lista_imcs);
+    this.maximoimc= this.obtenerMaxIMC(this.lista_imcs);
+    this.minimoimc= this.obtenerMinIMC(this.lista_imcs);
+
+    this.hijo_grafico.actualizaGraficos(this.mediaimc,this.maximoimc, this.minimoimc );
 
   }
 
@@ -320,7 +336,30 @@ export class ImcComponent implements OnInit, OnDestroy {
   }
 
   
-
+  obtenerMediaIMC(array_imcs: Array<Imc>): number {
+    let media: number = 0;
+    let total: number = 0;
+    //sumo los valores - sumatorio / 
+    //array_imcs.forEach(item_imc => total = total + item_imc.peso);
+    array_imcs.forEach(item_imc => { total += item_imc.numerico });
+    //divido entre el nº de elementos
+    media = total / array_imcs.length;
+    return media;
+  }
+  obtenerMaxIMC(array_imcs: Array<Imc>): number {
+    let maximo: number = 0;
+    //busco el valor maximo de imc.numerico en el array IMC
+    array_imcs.forEach(item_imc => { if (item_imc.numerico>maximo) {maximo=item_imc.numerico}  });
+    
+     return maximo;
+  }
+  obtenerMinIMC(array_imcs: Array<Imc>): number {
+    let minimo: number = array_imcs[0].numerico;
+    //busco el valor minimo de imc.numerico en el array IMC
+    array_imcs.forEach(item_imc => { if (item_imc.numerico<minimo) {minimo=item_imc.numerico}  });
+ 
+     return minimo;
+  }
 }
 
 //PASAR UN OBJETO A TEXTO

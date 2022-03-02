@@ -1,8 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { Alumno } from 'src/app/models/alumno';
 import { AlumnoService } from 'src/app/services/alumno.service';
 import { ComunicadorService } from 'src/app/services/comunicador.service';
+import { ModalAlumnoComponent } from '../modal-alumno/modal-alumno-component';
+
 
 @Component({
   selector: 'app-lista-alumnos',
@@ -18,7 +21,7 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
   @Input() tirodegithub:boolean;
 
 
-  constructor(public servicio_com:ComunicadorService, public servicio_alumnos:AlumnoService)
+  constructor(public servicio_com:ComunicadorService, public servicio_alumnos:AlumnoService, public dialog: MatDialog)
 
   { 
     this.termino_busqueda='';
@@ -119,4 +122,13 @@ export class ListaAlumnosComponent implements OnInit, OnDestroy {
     );
   }
 
+   alumnoTocado(alumno: Alumno) {
+     console.log("al = " + alumno.id);
+     this.dialog.open(ModalAlumnoComponent, {
+       data: alumno
+     });
+   }
+
 }
+
+

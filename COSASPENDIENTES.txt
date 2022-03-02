@@ -1,0 +1,7 @@
+TESTING UNITARIO E INTEGRAL (e2e)
+    KARMA (integral)
+    JASMINE (unitario) -librería de js-
+
+INTERCEPTORES
+
+GUARDS 

@@ -1,0 +1,37 @@
+2022-03-02 19:23:41.482  INFO 18516 --- [restartedMain] e.v.m.m.MicorservicioalumnosApplication  : Starting MicorservicioalumnosApplication using Java 16.0.2 on DESKTOP-0911JL3 with PID 18516 (C:\Users\valer\Downloads\microservicioligero-master\microservicioligero-master\micorservicioalumnos\target\classes started by valer in C:\Users\valer\Downloads\microservicioligero-master\microservicioligero-master\micorservicioalumnos)
+2022-03-02 19:23:41.493 DEBUG 18516 --- [restartedMain] e.v.m.m.MicorservicioalumnosApplication  : Running with Spring Boot v2.5.4, Spring v5.3.9
+2022-03-02 19:23:41.493  INFO 18516 --- [restartedMain] e.v.m.m.MicorservicioalumnosApplication  : No active profile set, falling back to default profiles: default
+2022-03-02 19:23:41.582  INFO 18516 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-03-02 19:23:41.582  INFO 18516 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-03-02 19:23:43.088  INFO 18516 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-03-02 19:23:43.178  INFO 18516 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 76 ms. Found 1 JPA repository interfaces.
+2022-03-02 19:23:44.040  INFO 18516 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8085 (http)
+2022-03-02 19:23:44.055  INFO 18516 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-02 19:23:44.056  INFO 18516 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.52]
+2022-03-02 19:23:44.209  INFO 18516 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-03-02 19:23:44.209  INFO 18516 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2624 ms
+2022-03-02 19:23:44.502  INFO 18516 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-03-02 19:23:44.616  INFO 18516 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-03-02 19:23:44.974  INFO 18516 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-03-02 19:23:45.140  INFO 18516 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-03-02 19:23:45.739  INFO 18516 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-03-02 19:23:45.760  INFO 18516 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-03-02 19:23:46.762  INFO 18516 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-03-02 19:23:46.771  INFO 18516 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-03-02 19:23:47.483  WARN 18516 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-03-02 19:23:48.597  INFO 18516 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-03-02 19:23:48.610  INFO 18516 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2022-03-02 19:23:48.675  INFO 18516 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8085 (http) with context path ''
+2022-03-02 19:23:48.691  INFO 18516 --- [restartedMain] e.v.m.m.MicorservicioalumnosApplication  : Started MicorservicioalumnosApplication in 8.103 seconds (JVM running for 9.931)
+2022-03-02 19:23:50.075  INFO 18516 --- [RMI TCP Connection(3)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-03-02 19:23:50.075  INFO 18516 --- [RMI TCP Connection(3)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-03-02 19:23:50.077  INFO 18516 --- [RMI TCP Connection(3)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-03-02 19:23:51.143  INFO 18516 --- [http-nio-8085-exec-2] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 255 ms
+2022-03-02 20:59:19.366 DEBUG 18516 --- [http-nio-8085-exec-8] e.v.m.m.controllers.AlumnoController     : Entrando en /pagina
+2022-03-02 20:59:19.415 DEBUG 18516 --- [http-nio-8085-exec-8] e.v.m.m.controllers.AlumnoController     : Saliendo en /pagina
+2022-03-02 20:59:19.443 DEBUG 18516 --- [http-nio-8085-exec-9] e.v.m.m.controllers.AlumnoController     : Ha entrado en obtenerFotoAlumnoPorId
+2022-03-02 20:59:19.443 DEBUG 18516 --- [http-nio-8085-exec-10] e.v.m.m.controllers.AlumnoController     : Ha entrado en obtenerFotoAlumnoPorId
+2022-03-02 21:13:28.574  INFO 18516 --- [RMI TCP Connection(118)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2022-03-02 21:13:28.616  INFO 18516 --- [RMI TCP Connection(118)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-03-02 21:13:28.623  INFO 18516 --- [RMI TCP Connection(118)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-03-02 21:13:28.626  INFO 18516 --- [RMI TCP Connection(118)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
