@@ -19,6 +19,8 @@ import { BusquedaPorNombreComponent } from './components/busqueda-por-nombre/bus
 import { CajaBusquedaAlumnosComponent } from './components/caja-busqueda-alumnos/caja-busqueda-alumnos.component';
 import { ListaAlumnosComponent } from './components/lista-alumnos/lista-alumnos.component';
 import { ElTiempoComponent } from './components/el-tiempo/el-tiempo.component';
+import { NgChartsModule } from 'ng2-charts';
+import { GraficoComponent } from './components/grafico/grafico.component';
 
 @NgModule({
   declarations: [ //aquí van los componentes que pertenecen al módulo
@@ -33,7 +35,8 @@ import { ElTiempoComponent } from './components/el-tiempo/el-tiempo.component';
     BusquedaPorNombreComponent,
     CajaBusquedaAlumnosComponent,
     ListaAlumnosComponent,
-    ElTiempoComponent
+    ElTiempoComponent,
+    GraficoComponent
   ],
   imports: [ //aquí los módulos - agrupación funcional 
     BrowserModule,
@@ -43,7 +46,8 @@ import { ElTiempoComponent } from './components/el-tiempo/el-tiempo.component';
     HttpClientModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgChartsModule
   ],
   providers: [],//servicios
   bootstrap: [AppComponent] //coponente inicial

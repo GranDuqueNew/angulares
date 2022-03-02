@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Imc } from './imc';
 import { TipoImc } from './tipo-imc';
 
@@ -318,6 +318,8 @@ export class ImcComponent implements OnInit, OnDestroy {
     );
 
   }
+
+  
 
 }
 
